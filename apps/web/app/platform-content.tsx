@@ -246,6 +246,41 @@ const cityGuide = [
   },
 ];
 
+const notificationCenter = [
+  {
+    type: "Belediye duyuruları",
+    title: "Su kesintisi bilgilendirmesi",
+    text: "Planlı bakım duyurusu vatandaş ve işletme panellerinde yayında.",
+    status: "Canlı",
+    time: "Şimdi",
+    channel: "Portal + Mobil",
+  },
+  {
+    type: "Etkinlik bildirimleri",
+    title: "Kent Meydanı etkinlik hatırlatması",
+    text: "Yaklaşan etkinlik için ilgili kullanıcılara hatırlatma planlandı.",
+    status: "Planlandı",
+    time: "18:00",
+    channel: "Mobil",
+  },
+  {
+    type: "Acil durum bilgilendirmeleri",
+    title: "Kuvvetli yağış uyarısı",
+    text: "Riskli bölgeler için öncelikli bildirim akışı hazırlandı.",
+    status: "Öncelikli",
+    time: "5 dk önce",
+    channel: "SMS + Mobil",
+  },
+  {
+    type: "Sistem bildirimleri",
+    title: "Başvuru durumu güncellendi",
+    text: "Talep, şikayet ve işletme başvurularında durum değişiklikleri otomatik iletilir.",
+    status: "Otomatik",
+    time: "Anlık",
+    channel: "Panel",
+  },
+];
+
 const stats = [["5+", "Portal"], ["100+", "Modül"], ["API", "Ready"], ["Cloud", "Native"]];
 
 function DashboardMockup() {
@@ -390,6 +425,33 @@ export function PlatformContent() {
               <ul>
                 {feature.items.map((item) => <li key={item}>{item}</li>)}
               </ul>
+            </article>
+          ))}
+        </div>
+      </section>
+
+      <section className="notification-section">
+        <div className="notification-copy">
+          <p className="eyebrow">🔔 Bildirim Merkezi</p>
+          <h2>Şehir iletişimini canlı veri akışı gibi yönetin.</h2>
+          <p>
+            Belediye duyuruları, etkinlik bildirimleri, acil durum bilgilendirmeleri ve sistem bildirimleri tek merkezde
+            takip edilir; ilgili kanallara hızlıca iletilir.
+          </p>
+        </div>
+        <div className="notification-feed" aria-label="Canlı bildirim veri akışı">
+          {notificationCenter.map((item) => (
+            <article className="notification-card" key={item.type}>
+              <div>
+                <span className="notification-type">{item.type}</span>
+                <h3>{item.title}</h3>
+                <p>{item.text}</p>
+              </div>
+              <div className="notification-meta">
+                <span>{item.status}</span>
+                <span>{item.time}</span>
+                <span>{item.channel}</span>
+              </div>
             </article>
           ))}
         </div>

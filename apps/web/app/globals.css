@@ -193,6 +193,9 @@ a {
 :root[data-theme="dark"] .workspace-record,
 :root[data-theme="dark"] .citizen-package-card,
 :root[data-theme="dark"] .citizen-package-note,
+:root[data-theme="dark"] .muflow-pass-card,
+:root[data-theme="dark"] .pass-revenue-card,
+:root[data-theme="dark"] .pass-flow-list div,
 :root[data-theme="dark"] .permission-table article {
   background: var(--card);
   border-color: var(--line);
@@ -281,6 +284,9 @@ a {
 :root[data-theme="dark"] .citizen-package-card p,
 :root[data-theme="dark"] .citizen-package-card li,
 :root[data-theme="dark"] .citizen-package-note span,
+:root[data-theme="dark"] .muflow-pass-card p,
+:root[data-theme="dark"] .muflow-pass-card li,
+:root[data-theme="dark"] .pass-flow-list span,
 :root[data-theme="dark"] .permission-table span,
 :root[data-theme="dark"] .permission-table small {
   color: var(--muted);
@@ -2609,6 +2615,96 @@ p {
   padding-left: 18px;
 }
 
+.muflow-pass-layout {
+  display: grid;
+  gap: 16px;
+  grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
+}
+
+.muflow-pass-card,
+.pass-revenue-card {
+  background: var(--white);
+  border: 1px solid rgba(37, 99, 235, 0.22);
+  border-radius: 22px;
+  box-shadow: 0 22px 48px rgba(37, 99, 235, 0.1);
+  display: grid;
+  gap: 14px;
+  padding: 24px;
+}
+
+.muflow-pass-card {
+  background:
+    linear-gradient(135deg, rgba(37, 99, 235, 0.08), rgba(6, 182, 212, 0.1)),
+    var(--white);
+}
+
+.muflow-pass-card div:first-child {
+  display: grid;
+  gap: 8px;
+}
+
+.muflow-pass-card span {
+  background: var(--navy);
+  border-radius: 999px;
+  color: var(--white);
+  font-size: 0.78rem;
+  font-weight: 950;
+  justify-self: start;
+  padding: 8px 10px;
+}
+
+.muflow-pass-card h3,
+.pass-revenue-card h3 {
+  margin: 0;
+}
+
+.muflow-pass-card strong {
+  color: var(--blue);
+  font-size: 1.45rem;
+}
+
+.muflow-pass-card p,
+.muflow-pass-card li,
+.pass-flow-list span {
+  color: var(--muted);
+  font-weight: 750;
+  line-height: 1.45;
+}
+
+.muflow-pass-card ul,
+.pass-flow-list {
+  display: grid;
+  gap: 10px;
+  margin: 0;
+}
+
+.muflow-pass-card ul {
+  padding-left: 18px;
+}
+
+.pass-flow-list div {
+  align-items: center;
+  background: var(--soft);
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  display: grid;
+  gap: 12px;
+  grid-template-columns: auto minmax(0, 1fr);
+  padding: 12px;
+}
+
+.pass-flow-list strong {
+  align-items: center;
+  background: var(--blue);
+  border-radius: 50%;
+  color: var(--white);
+  display: inline-flex;
+  font-weight: 950;
+  height: 32px;
+  justify-content: center;
+  width: 32px;
+}
+
 .business-hero {
   margin: 0 auto 34px;
   max-width: 860px;
@@ -2844,7 +2940,8 @@ p {
   .quick-question-grid,
   .workspace-tabs,
   .workspace-body,
-  .citizen-package-grid {
+  .citizen-package-grid,
+  .muflow-pass-layout {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
@@ -2938,6 +3035,7 @@ p {
   .workspace-tabs,
   .workspace-body,
   .citizen-package-grid,
+  .muflow-pass-layout,
   .feature-matrix,
   .excluded-grid,
   .business-grid,

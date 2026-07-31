@@ -84,6 +84,28 @@ const citizenPackages = [
   },
 ];
 
+const muflowPass = {
+  name: "MUFLOW Pass",
+  badge: "Dijital Şehir Kartı",
+  price: "99 TL / ay",
+  text: "Vatandaş yalnızca yazılıma değil, şehir ekosistemindeki somut avantajlara ödeme yapar.",
+  features: [
+    "İşletmelerde özel indirimler",
+    "Belediye tesislerinde kampanyalar",
+    "Kültürel etkinliklerde öncelikli kayıt",
+    "Partner işletmelerde fırsatlar",
+    "QR dijital üyelik kartı",
+  ],
+};
+
+const passRevenueFlow = [
+  ["1", "İşletme MUFLOW Partner olur."],
+  ["2", "Restoran veya yerel işletme örneğin %10 indirim sağlar."],
+  ["3", "Vatandaş MUFLOW Pass QR kartı ile indirimi kullanır."],
+  ["4", "İşletme daha fazla müşteri kazanır."],
+  ["5", "MUFLOW üyelik veya pazarlama hizmeti geliri elde eder."],
+];
+
 const panelModules: Record<string, WorkspaceModule[]> = {
   municipality: [
     { id: "news", icon: "📰", title: "Haber", text: "Haber başlığı, içerik ve yayın durumu oluşturun.", action: "Haber Oluştur" },
@@ -219,6 +241,10 @@ export function PanelWorkspace({ panel }: { panel: PanelWorkspaceKey }) {
     await loadRecords();
   }
 
+  async function selectMuflowPass() {
+    await selectCitizenPackage(muflowPass.name, muflowPass.price, muflowPass.features);
+  }
+
   return (
     <section className="panel-workspace">
       <div className="panel-workspace-head">
@@ -290,29 +316,61 @@ export function PanelWorkspace({ panel }: { panel: PanelWorkspaceKey }) {
       </div>
 
       {panel === "citizen" && activeModuleId === "packages" ? (
-        <div className="citizen-package-grid">
-          {citizenPackages.map((item) => (
-            <article className={`citizen-package-card ${item.color}`} key={item.name}>
+        <>
+          <div className="citizen-package-grid">
+            {citizenPackages.map((item) => (
+              <article className={`citizen-package-card ${item.color}`} key={item.name}>
+                <div>
+                  <span>{item.badge}</span>
+                  <h3>{item.name}</h3>
+                  <strong>{item.price}</strong>
+                </div>
+                <p>{item.text}</p>
+                <ul>
+                  {item.features.map((feature) => <li key={feature}>{feature}</li>)}
+                </ul>
+                <button
+                  className="primary-button"
+                  disabled={loading}
+                  onClick={() => selectCitizenPackage(item.name, item.price, item.features)}
+                  type="button"
+                >
+                  {item.price === "0 TL" ? "Ücretsiz Kullan" : "Paketi Seç"}
+                </button>
+              </article>
+            ))}
+          </div>
+
+          <div className="muflow-pass-layout">
+            <article className="muflow-pass-card">
               <div>
-                <span>{item.badge}</span>
-                <h3>{item.name}</h3>
-                <strong>{item.price}</strong>
+                <span>{muflowPass.badge}</span>
+                <h3>{muflowPass.name}</h3>
+                <strong>{muflowPass.price}</strong>
               </div>
-              <p>{item.text}</p>
+              <p>{muflowPass.text}</p>
               <ul>
-                {item.features.map((feature) => <li key={feature}>{feature}</li>)}
+                {muflowPass.features.map((feature) => <li key={feature}>{feature}</li>)}
               </ul>
-              <button
-                className="primary-button"
-                disabled={loading}
-                onClick={() => selectCitizenPackage(item.name, item.price, item.features)}
-                type="button"
-              >
-                {item.price === "0 TL" ? "Ücretsiz Kullan" : "Paketi Seç"}
+              <button className="primary-button" disabled={loading} onClick={selectMuflowPass} type="button">
+                Pass Talebi Oluştur
               </button>
             </article>
-          ))}
-        </div>
+
+            <article className="pass-revenue-card">
+              <p className="eyebrow">Gelir Paylaşımı Modeli</p>
+              <h3>İşletmeler MUFLOW Partner olur.</h3>
+              <div className="pass-flow-list">
+                {passRevenueFlow.map(([step, text]) => (
+                  <div key={step}>
+                    <strong>{step}</strong>
+                    <span>{text}</span>
+                  </div>
+                ))}
+              </div>
+            </article>
+          </div>
+        </>
       ) : null}
     </section>
   );

@@ -1,3 +1,5 @@
+import { MuAiDemo } from "./mu-ai-demo";
+
 const reasons = [
   ["Cloud", "Bulut Tabanlı", "Kurulum gerektirmez."],
   ["Grid", "Modüler", "İhtiyacınız kadar kullanın."],
@@ -505,6 +507,18 @@ export function PlatformContent() {
             </article>
           ))}
         </div>
+      </section>
+
+      <section className="mu-ai-section">
+        <div className="business-hero">
+          <p className="eyebrow">🤖 MU AI (Beta)</p>
+          <h2>Belediye hizmetleri için çalışan şehir asistanı altyapısı.</h2>
+          <p>
+            MU AI; belediye hizmetleri hakkında soru-cevap, etkinlik önerileri, şehir rehberi desteği ve sık sorulan
+            sorular için MVP seviyesinde canlı API ve arayüzle hazırlandı.
+          </p>
+        </div>
+        <MuAiDemo />
       </section>
 
       <section className="analytics-section">

@@ -274,37 +274,6 @@ const notificationCenter = [
   },
 ];
 
-const analyticsMetrics = [
-  {
-    title: "Kullanıcı sayıları",
-    value: "0",
-    change: "0%",
-    text: "Vatandaş, işletme ve personel kullanıcıları tek özet panelde takip edilir.",
-    bars: [8, 8, 8, 8, 8],
-  },
-  {
-    title: "Sayfa görüntülemeleri",
-    value: "0",
-    change: "0%",
-    text: "Portal sayfalarının toplam erişimi ve en çok görüntülenen içerikler izlenir.",
-    bars: [8, 8, 8, 8, 8],
-  },
-  {
-    title: "Etkinlik katılımı",
-    value: "0",
-    change: "0%",
-    text: "Etkinlik ilgisi, kayıt ve katılım eğilimi temel seviyede raporlanır.",
-    bars: [8, 8, 8, 8, 8],
-  },
-  {
-    title: "İşletme görüntülenmeleri",
-    value: "0",
-    change: "0%",
-    text: "İşletme profili ve QR sayfası görünürlüğü canlı özet olarak sunulur.",
-    bars: [8, 8, 8, 8, 8],
-  },
-];
-
 const securityFeatures = [
   {
     title: "Güvenli giriş",

@@ -1,4 +1,4 @@
-import { AuthUser, UserRole, roles } from "./auth";
+import { AuthUser, UserRole, demoUsers, roles } from "./auth";
 
 export type ManagedUser = AuthUser & {
   createdAt: string;
@@ -50,7 +50,7 @@ export async function createManagedUser(input: {
   const store = getStore();
   const email = input.email.trim().toLowerCase();
 
-  if (store.users.some((user) => user.email === email)) {
+  if (store.users.some((user) => user.email === email) || demoUsers.some((user) => user.email === email)) {
     return { error: "Bu e-posta ile kullanıcı zaten tanımlı." };
   }
 

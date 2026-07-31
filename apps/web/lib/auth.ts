@@ -47,13 +47,6 @@ export const demoUsers: AuthUser[] = [
     role: "BUSINESS_OWNER",
     tenantId: "tenant_fethiye",
   },
-  {
-    id: "usr_citizen",
-    name: "Vatandas",
-    email: "vatandas@muflow.city",
-    role: "CITIZEN",
-    tenantId: "tenant_fethiye",
-  },
 ];
 
 function base64UrlEncode(value: string | ArrayBuffer) {

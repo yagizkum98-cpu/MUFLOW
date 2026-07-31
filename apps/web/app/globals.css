@@ -822,6 +822,11 @@ p {
   padding: 82px clamp(20px, 5vw, 72px);
 }
 
+.guide-section {
+  background: #eff6ff;
+  padding: 82px clamp(20px, 5vw, 72px);
+}
+
 .business-hero {
   margin: 0 auto 34px;
   max-width: 860px;

@@ -201,6 +201,51 @@ const citizenPortal = [
   },
 ];
 
+const cityGuide = [
+  {
+    icon: "📍",
+    title: "Gezilecek Yerler",
+    text: "Şehrin öne çıkan noktalarını tek dijital rehberde listeleyin.",
+    items: ["Konum bilgisi", "Kısa açıklama", "Kategori", "Görsel alanı"],
+  },
+  {
+    icon: "🌳",
+    title: "Parklar",
+    text: "Park ve rekreasyon alanlarını vatandaşlar ve ziyaretçiler için görünür kılın.",
+    items: ["Park bilgileri", "Adres", "Harita konumu", "Temel özellikler"],
+  },
+  {
+    icon: "🏖️",
+    title: "Plajlar",
+    text: "Sahil ve plaj noktalarını sezonsal bilgilerle tanıtın.",
+    items: ["Plaj açıklaması", "Konum", "Ulaşım bilgisi", "Durum bilgisi"],
+  },
+  {
+    icon: "🏛️",
+    title: "Müzeler",
+    text: "Kültür ve tarih noktalarını dijital rehberde düzenli şekilde sunun.",
+    items: ["Müze bilgisi", "Ziyaret saatleri", "Adres", "İletişim bilgisi"],
+  },
+  {
+    icon: "🏥",
+    title: "Sağlık Noktaları",
+    text: "Sağlık hizmet noktalarına hızlı erişim sağlayın.",
+    items: ["Nokta adı", "Adres", "Telefon", "Harita konumu"],
+  },
+  {
+    icon: "🅿️",
+    title: "Otopark Bilgileri",
+    text: "Otopark noktalarını ve temel erişim bilgilerini şehir rehberine ekleyin.",
+    items: ["Otopark adı", "Konum", "Kapasite bilgisi", "Ücret / ücretsiz durumu"],
+  },
+  {
+    icon: "🗺️",
+    title: "Harita Üzerinde Gösterim",
+    text: "Tüm şehir rehberi noktalarını harita üzerinde anlaşılır şekilde gösterin.",
+    items: ["Kategori filtreleri", "Konum pinleri", "Yakınımdaki noktalar", "Rota desteği"],
+  },
+];
+
 const stats = [["5+", "Portal"], ["100+", "Modül"], ["API", "Ready"], ["Cloud", "Native"]];
 
 function DashboardMockup() {
@@ -311,6 +356,31 @@ export function PlatformContent() {
         </div>
         <div className="business-grid">
           {citizenPortal.map((feature) => (
+            <article className="business-card" key={feature.title}>
+              <div className="feature-title">
+                <span>{feature.icon}</span>
+                <h3>{feature.title}</h3>
+              </div>
+              <p>{feature.text}</p>
+              <ul>
+                {feature.items.map((item) => <li key={item}>{item}</li>)}
+              </ul>
+            </article>
+          ))}
+        </div>
+      </section>
+
+      <section className="guide-section">
+        <div className="business-hero">
+          <p className="eyebrow">🗺️ Şehir Rehberi</p>
+          <h2>Şehrin önemli noktalarını tek dijital rehberde toplayın.</h2>
+          <p>
+            MUFLOW Şehir Rehberi; gezilecek yerler, parklar, plajlar, müzeler, sağlık noktaları ve otopark bilgilerini
+            harita destekli sade bir deneyimle sunar.
+          </p>
+        </div>
+        <div className="business-grid">
+          {cityGuide.map((feature) => (
             <article className="business-card" key={feature.title}>
               <div className="feature-title">
                 <span>{feature.icon}</span>

@@ -7,7 +7,33 @@
   --text: #172033;
   --muted: #64748b;
   --white: #ffffff;
+  --page: #ffffff;
+  --card: #ffffff;
+  --card-soft: #f8fafc;
+  --section-soft: #eff6ff;
+  --header-bg: rgba(255, 255, 255, 0.9);
+  --nav-text: #475569;
+  --panel-dark: #0f172a;
+  --panel-dark-text: #dbeafe;
   --shadow: 0 20px 50px rgba(15, 23, 42, 0.08);
+}
+
+:root[data-theme="dark"] {
+  --navy: #f8fafc;
+  --soft: #0f172a;
+  --line: #1e293b;
+  --text: #e5edf8;
+  --muted: #94a3b8;
+  --white: #020617;
+  --page: #000000;
+  --card: #0b1220;
+  --card-soft: #111827;
+  --section-soft: #07111f;
+  --header-bg: rgba(2, 6, 23, 0.92);
+  --nav-text: #cbd5e1;
+  --panel-dark: #020617;
+  --panel-dark-text: #bfdbfe;
+  --shadow: 0 22px 54px rgba(0, 0, 0, 0.34);
 }
 
 * {
@@ -20,9 +46,10 @@ html {
 
 body {
   margin: 0;
-  background: var(--white);
+  background: var(--page);
   color: var(--text);
   font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  transition: background 220ms ease, color 220ms ease;
 }
 
 a {
@@ -32,8 +59,8 @@ a {
 
 .site-header {
   align-items: center;
-  background: rgba(255, 255, 255, 0.9);
-  border-bottom: 1px solid rgba(226, 232, 240, 0.78);
+  background: var(--header-bg);
+  border-bottom: 1px solid var(--line);
   display: flex;
   gap: 24px;
   justify-content: space-between;
@@ -67,12 +94,13 @@ a {
 
 .main-nav a,
 .footer a {
-  color: #475569;
+  color: var(--nav-text);
   font-size: 0.94rem;
   font-weight: 700;
 }
 
-.language-toggle {
+.language-toggle,
+.theme-toggle {
   align-items: center;
   background: var(--soft);
   border: 1px solid var(--line);
@@ -82,7 +110,8 @@ a {
   padding: 4px;
 }
 
-.language-toggle button {
+.language-toggle button,
+.theme-toggle button {
   background: transparent;
   border: 0;
   border-radius: 999px;
@@ -95,9 +124,134 @@ a {
   padding: 0 12px;
 }
 
-.language-toggle button.active {
+.language-toggle button.active,
+.theme-toggle button.active {
   background: var(--blue);
   color: var(--white);
+}
+
+:root[data-theme="dark"] .brand img,
+:root[data-theme="dark"] .footer img {
+  filter: brightness(1.1);
+}
+
+:root[data-theme="dark"] .hero,
+:root[data-theme="dark"] .section,
+:root[data-theme="dark"] .platform-page,
+:root[data-theme="dark"] .municipality-section,
+:root[data-theme="dark"] .citizen-section,
+:root[data-theme="dark"] .analytics-section,
+:root[data-theme="dark"] .simple-page,
+:root[data-theme="dark"] .secure-dashboard {
+  background: var(--page);
+}
+
+:root[data-theme="dark"] .business-section,
+:root[data-theme="dark"] .guide-section,
+:root[data-theme="dark"] .security-section,
+:root[data-theme="dark"] .mu-ai-section,
+:root[data-theme="dark"] .pricing-section,
+:root[data-theme="dark"] .auth-page {
+  background: var(--section-soft);
+}
+
+:root[data-theme="dark"] .dashboard,
+:root[data-theme="dark"] .metric,
+:root[data-theme="dark"] .chart,
+:root[data-theme="dark"] .reason-card,
+:root[data-theme="dark"] .platform-card,
+:root[data-theme="dark"] .pricing-card,
+:root[data-theme="dark"] .revenue-card,
+:root[data-theme="dark"] .package-table,
+:root[data-theme="dark"] .feature-card,
+:root[data-theme="dark"] .business-card,
+:root[data-theme="dark"] .analytics-card,
+:root[data-theme="dark"] .security-card,
+:root[data-theme="dark"] .login-card,
+:root[data-theme="dark"] .mu-ai-panel,
+:root[data-theme="dark"] .module-detail-card,
+:root[data-theme="dark"] .stats article {
+  background: var(--card);
+  border-color: var(--line);
+  box-shadow: var(--shadow);
+}
+
+:root[data-theme="dark"] .dashboard,
+:root[data-theme="dark"] .pricing-section,
+:root[data-theme="dark"] .modules-page {
+  background-image: none;
+}
+
+:root[data-theme="dark"] .line-icon,
+:root[data-theme="dark"] .feature-title span,
+:root[data-theme="dark"] .pricing-card li::before,
+:root[data-theme="dark"] .b2b-grid > div,
+:root[data-theme="dark"] .channel-list div,
+:root[data-theme="dark"] .product-family div,
+:root[data-theme="dark"] .mini-chart,
+:root[data-theme="dark"] .demo-accounts button,
+:root[data-theme="dark"] .quick-question-grid button,
+:root[data-theme="dark"] .stats-heading,
+:root[data-theme="dark"] .revenue-note,
+:root[data-theme="dark"] .ai-result-card,
+:root[data-theme="dark"] .platform-summary {
+  background: var(--card-soft);
+  border-color: var(--line);
+}
+
+:root[data-theme="dark"] h1,
+:root[data-theme="dark"] h2,
+:root[data-theme="dark"] h3,
+:root[data-theme="dark"] .plan-label,
+:root[data-theme="dark"] .analytics-value,
+:root[data-theme="dark"] .distribution-list span,
+:root[data-theme="dark"] .distribution-list strong,
+:root[data-theme="dark"] .channel-list strong,
+:root[data-theme="dark"] .product-family strong,
+:root[data-theme="dark"] .feature-card p,
+:root[data-theme="dark"] .goal-grid span,
+:root[data-theme="dark"] .stats-heading span,
+:root[data-theme="dark"] .demo-accounts strong,
+:root[data-theme="dark"] .login-card label,
+:root[data-theme="dark"] .mu-ai-panel label,
+:root[data-theme="dark"] .quick-question-grid button {
+  color: var(--navy);
+}
+
+:root[data-theme="dark"] p,
+:root[data-theme="dark"] .feature-card li,
+:root[data-theme="dark"] .business-card li,
+:root[data-theme="dark"] .revenue-card li,
+:root[data-theme="dark"] .sales-steps li,
+:root[data-theme="dark"] .channel-list span,
+:root[data-theme="dark"] .product-family span,
+:root[data-theme="dark"] .analytics-card p:not(.analytics-value),
+:root[data-theme="dark"] .demo-accounts span {
+  color: var(--muted);
+}
+
+:root[data-theme="dark"] .secondary-button,
+:root[data-theme="dark"] .login-button,
+:root[data-theme="dark"] .login-card input,
+:root[data-theme="dark"] .mu-ai-panel input {
+  background: var(--card-soft);
+  border-color: var(--line);
+  color: var(--navy);
+}
+
+:root[data-theme="dark"] .notification-section,
+:root[data-theme="dark"] .stats article,
+:root[data-theme="dark"] .cta {
+  background: #000000;
+}
+
+:root[data-theme="dark"] .notification-copy h2,
+:root[data-theme="dark"] .notification-copy p,
+:root[data-theme="dark"] .notification-card h3,
+:root[data-theme="dark"] .notification-card p,
+:root[data-theme="dark"] .cta h2,
+:root[data-theme="dark"] .cta p {
+  color: var(--navy);
 }
 
 .header-actions {
@@ -1726,7 +1880,7 @@ p {
 }
 
 @media (max-width: 680px) {
-  .site-header,
+.site-header,
   .footer {
     align-items: flex-start;
     flex-direction: column;
@@ -1736,6 +1890,12 @@ p {
   .hero-actions,
   .footer nav {
     flex-wrap: wrap;
+  }
+
+  .language-toggle,
+  .theme-toggle {
+    align-self: stretch;
+    justify-content: center;
   }
 
   .hero {

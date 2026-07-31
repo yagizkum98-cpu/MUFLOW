@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { LanguageToggle } from "./language-toggle";
+import { ThemeToggle } from "./theme-toggle";
 import "./globals.css";
 
 export const metadata: Metadata = {
@@ -20,6 +21,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             <a href="/giris">Giriş Yap</a>
           </nav>
           <LanguageToggle />
+          <ThemeToggle />
         </header>
         {children}
         <footer className="footer">

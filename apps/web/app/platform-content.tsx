@@ -1,4 +1,5 @@
 import { MuAiDemo } from "./mu-ai-demo";
+import { LiveStats } from "./live-stats";
 
 const reasons = [
   ["Cloud", "Bulut Tabanlı", "Kurulum gerektirmez."],
@@ -333,8 +334,6 @@ const securityFeatures = [
   },
 ];
 
-const stats = [["5+", "Portal"], ["100+", "Modül"], ["API", "Ready"], ["Cloud", "Native"]];
-
 function DashboardMockup() {
   return (
     <div className="mockup-wrap" aria-label="Canlı dashboard ve telefon mockup">
@@ -637,11 +636,7 @@ export function PlatformContent() {
         </div>
       </section>
 
-      <section className="stats">
-        {stats.map(([value, label]) => (
-          <div key={label}><strong>{value}</strong><span>{label}</span></div>
-        ))}
-      </section>
+      <LiveStats />
 
       <section className="cta">
         <h2>Şehrinizi Dijitalleştirin.</h2>

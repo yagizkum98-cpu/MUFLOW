@@ -567,12 +567,25 @@ p {
   padding: 38px clamp(20px, 5vw, 72px) 82px;
 }
 
-.stats div {
+.stats-heading,
+.stats article {
   background: var(--navy);
   border-radius: 18px;
   color: var(--white);
   padding: 24px;
   text-align: center;
+}
+
+.stats-heading {
+  align-items: center;
+  background: #eff6ff;
+  border: 1px solid #bfdbfe;
+  color: var(--navy);
+  display: flex;
+  gap: 12px;
+  grid-column: 1 / -1;
+  justify-content: space-between;
+  text-align: left;
 }
 
 .stats strong {
@@ -584,6 +597,24 @@ p {
 .stats span {
   color: #dbeafe;
   font-weight: 800;
+}
+
+.stats-heading span {
+  color: var(--navy);
+  font-weight: 950;
+}
+
+.stats small {
+  color: #93c5fd;
+  display: block;
+  font-size: 0.78rem;
+  font-weight: 850;
+  margin-top: 10px;
+}
+
+.stats-heading small {
+  color: var(--blue);
+  margin: 0;
 }
 
 .cta {

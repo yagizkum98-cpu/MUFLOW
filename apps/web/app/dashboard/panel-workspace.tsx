@@ -40,7 +40,7 @@ const citizenPackages = [
   {
     name: "MUFLOW Plus",
     badge: "Kişisel",
-    price: "499 TL / yıl",
+    price: "499 TL + KDV / yıl",
     color: "blue",
     text: "Daha fazla kişiselleştirme isteyen kullanıcılar için.",
     features: [
@@ -56,7 +56,7 @@ const citizenPackages = [
   {
     name: "MUFLOW Explorer",
     badge: "Turizm",
-    price: "899 TL / yıl",
+    price: "899 TL + KDV / yıl",
     color: "purple",
     text: "Turistler ve şehirde aktif zaman geçirmek isteyen kullanıcılar için.",
     features: [
@@ -71,7 +71,7 @@ const citizenPackages = [
   {
     name: "MUFLOW Family",
     badge: "Aile",
-    price: "699 TL / yıl",
+    price: "699 TL + KDV / yıl",
     color: "yellow",
     text: "Ailelere yönelik şehir yaşamı ve güvenlik destek paketi.",
     features: [
@@ -87,7 +87,7 @@ const citizenPackages = [
 const muflowPass = {
   name: "MUFLOW Pass",
   badge: "Dijital Şehir Kartı",
-  price: "999 TL / yıl",
+  price: "999 TL + KDV / yıl",
   text: "Vatandaş yalnızca yazılıma değil, şehir ekosistemindeki somut avantajlara ödeme yapar.",
   features: [
     "İşletmelerde özel indirimler",

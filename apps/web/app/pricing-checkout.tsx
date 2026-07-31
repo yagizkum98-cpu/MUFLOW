@@ -27,12 +27,12 @@ type CheckoutStep = "cart" | "kvkk" | "payment" | "done";
 type PaymentMethod = "card" | "iban";
 
 const packagePrices: Record<string, string> = {
-  "municipality-starter": "Teklif ile",
-  "municipality-professional": "Teklif ile",
-  "municipality-enterprise": "Özel teklif",
+  "municipality-starter": "Teklif + KDV",
+  "municipality-professional": "Teklif + KDV",
+  "municipality-enterprise": "Özel teklif + KDV",
   "business-ücretsiz": "0 TL",
-  "business-premium": "Yıllık teklif",
-  "business-premium+": "Yıllık teklif",
+  "business-premium": "Yıllık teklif + KDV",
+  "business-premium+": "Yıllık teklif + KDV",
 };
 
 function normalizeId(value: string) {

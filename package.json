@@ -1,0 +1,17 @@
+{
+  "name": "muflow",
+  "private": true,
+  "workspaces": [
+    "apps/*",
+    "packages/*"
+  ],
+  "scripts": {
+    "dev": "npm --workspace apps/web run dev",
+    "build": "npm --workspace apps/web run build",
+    "start": "npm --workspace apps/web run start",
+    "prisma:generate": "prisma generate"
+  },
+  "devDependencies": {
+    "prisma": "^6.13.0"
+  }
+}

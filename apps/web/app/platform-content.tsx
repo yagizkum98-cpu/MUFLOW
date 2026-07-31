@@ -11,6 +11,7 @@ import {
   revenueDistribution,
   salesSteps,
 } from "../lib/revenue-model";
+import { PricingCheckout } from "./pricing-checkout";
 
 const reasons = [
   ["Cloud", "Bulut Tabanlı", "Kurulum gerektirmez."],
@@ -344,31 +345,16 @@ function RevenueModelSection() {
           </ul>
         </article>
 
-        <div className="package-table">
-          {municipalityRevenue.packages.map((plan) => (
-            <article className={`revenue-card ${plan.featured ? "featured" : ""}`} key={plan.name}>
-              <span className="package-name">{plan.name}</span>
-              <h3>{plan.target}</h3>
-              <p>{plan.content}</p>
-            </article>
-          ))}
-        </div>
-
         <article className="revenue-card wide">
           <p className="plan-label">{businessRevenue.title}</p>
           <p>{businessRevenue.text}</p>
-          <div className="b2b-grid">
-            {businessRevenue.packages.map((plan) => (
-              <div className={plan.featured ? "featured" : ""} key={plan.name}>
-                <h3>{plan.name}</h3>
-                <ul>
-                  {plan.features.map((feature) => <li key={feature}>{feature}</li>)}
-                </ul>
-              </div>
-            ))}
-          </div>
           <p className="revenue-note">{businessRevenue.note}</p>
         </article>
+
+        <PricingCheckout
+          municipalityPackages={municipalityRevenue.packages}
+          businessPackages={businessRevenue.packages}
+        />
 
         <article className="revenue-card">
           <p className="plan-label">{citizenRevenue.title}</p>

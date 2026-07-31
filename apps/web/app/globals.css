@@ -178,7 +178,9 @@ a {
 
 :root[data-theme="dark"] .business-dashboard-page,
 :root[data-theme="dark"] .business-panel-card,
-:root[data-theme="dark"] .business-live-row article {
+:root[data-theme="dark"] .business-live-row article,
+:root[data-theme="dark"] .admin-access-card,
+:root[data-theme="dark"] .permission-table article {
   background: var(--card);
   border-color: var(--line);
   box-shadow: var(--shadow);
@@ -240,7 +242,10 @@ a {
 
 :root[data-theme="dark"] .business-panel-card li,
 :root[data-theme="dark"] .business-live-row span,
-:root[data-theme="dark"] .business-live-row small {
+:root[data-theme="dark"] .business-live-row small,
+:root[data-theme="dark"] .admin-access-card p,
+:root[data-theme="dark"] .permission-table span,
+:root[data-theme="dark"] .permission-table small {
   color: var(--muted);
 }
 
@@ -1763,6 +1768,68 @@ p {
   width: 6px;
 }
 
+.admin-access-grid {
+  display: grid;
+  gap: 18px;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  margin: 0 auto 34px;
+  max-width: 1180px;
+}
+
+.admin-access-card,
+.permission-table article {
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: 20px;
+  box-shadow: 0 18px 38px rgba(15, 23, 42, 0.06);
+  display: grid;
+  gap: 10px;
+  padding: 22px;
+}
+
+.admin-access-card h2 {
+  font-size: 1.12rem;
+  margin: 0;
+}
+
+.admin-access-card p {
+  font-size: 0.94rem;
+  margin: 0;
+}
+
+.admin-access-card strong {
+  color: var(--blue);
+  font-size: 0.9rem;
+}
+
+.admin-matrix {
+  margin: 0 auto 34px;
+  max-width: 1180px;
+}
+
+.permission-table {
+  display: grid;
+  gap: 14px;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+}
+
+.permission-table strong {
+  color: var(--navy);
+}
+
+.permission-table span,
+.permission-table small {
+  color: var(--muted);
+  font-size: 0.9rem;
+  font-weight: 750;
+  line-height: 1.45;
+}
+
+.permission-table small {
+  color: var(--blue);
+  font-weight: 900;
+}
+
 .business-hero {
   margin: 0 auto 34px;
   max-width: 860px;
@@ -2007,6 +2074,8 @@ p {
   .feature-matrix,
   .business-grid,
   .business-panel-grid,
+  .admin-access-grid,
+  .permission-table,
   .goal-grid,
   .simple-list {
     grid-template-columns: repeat(3, minmax(0, 1fr));
@@ -2080,6 +2149,8 @@ p {
   .business-grid,
   .business-panel-grid,
   .business-live-row,
+  .admin-access-grid,
+  .permission-table,
   .goal-grid,
   .simple-list {
     grid-template-columns: 1fr;

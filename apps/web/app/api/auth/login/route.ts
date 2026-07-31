@@ -9,10 +9,15 @@ export async function POST(request: Request) {
   const passwordOverrideUser = await verifyPasswordOverride(email, password)
     ? demoUsers.find((item) => item.email === email) || null
     : null;
+
+  if (email === "admin@muflow.city" && !process.env.SUPER_ADMIN_PASSWORD && process.env.NODE_ENV === "production") {
+    return NextResponse.json({ message: "SUPER_ADMIN_PASSWORD Vercel ortam değişkeni tanımlı değil." }, { status: 503 });
+  }
+
   const user = await findManagedUser(email, password) || passwordOverrideUser || findDemoUser(email, password);
 
   if (!user) {
-    return NextResponse.json({ message: "E-posta, sifre veya auth ortam degiskeni hatali." }, { status: 401 });
+    return NextResponse.json({ message: "E-posta veya şifre hatalı." }, { status: 401 });
   }
 
   let token: string;

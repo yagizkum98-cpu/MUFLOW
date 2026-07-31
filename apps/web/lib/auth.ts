@@ -153,9 +153,10 @@ export function hasRole(user: AuthUser | null, allowedRoles: UserRole[]) {
 
 export function findDemoUser(email: string, password: string) {
   const normalizedEmail = email.trim().toLowerCase();
+  const fallbackPassword = process.env.DEMO_AUTH_PASSWORD || "1234567890";
   const demoPassword = normalizedEmail === "admin@muflow.city"
-    ? process.env.SUPER_ADMIN_PASSWORD
-    : process.env.DEMO_AUTH_PASSWORD || "1234567890";
+    ? process.env.SUPER_ADMIN_PASSWORD || (process.env.NODE_ENV !== "production" ? fallbackPassword : undefined)
+    : fallbackPassword;
 
   if (!demoPassword || password !== demoPassword) {
     return null;

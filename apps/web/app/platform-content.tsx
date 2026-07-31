@@ -123,6 +123,45 @@ const businessPortal = [
   },
 ];
 
+const municipalityPortal = [
+  {
+    icon: "📰",
+    title: "Haber Yönetimi",
+    text: "Belediye haberlerini merkezi panelden hazırlayın ve yayınlayın.",
+    items: ["Haber başlığı", "Kapak görseli", "İçerik düzenleme", "Yayın durumu"],
+  },
+  {
+    icon: "📢",
+    title: "Duyuru Yönetimi",
+    text: "Vatandaşlara hızlı, anlaşılır ve güncel duyurular ulaştırın.",
+    items: ["Duyuru oluşturma", "Kategori seçimi", "Öne çıkarma", "Yayın tarihi"],
+  },
+  {
+    icon: "🎉",
+    title: "Etkinlik Yönetimi",
+    text: "Şehir etkinliklerini takvim, konum ve içerik bilgileriyle yönetin.",
+    items: ["Etkinlik oluşturma", "Tarih ve saat", "Konum", "Kısa açıklama"],
+  },
+  {
+    icon: "📄",
+    title: "Sayfa Yönetimi",
+    text: "Kurumsal sayfaları ve temel şehir bilgilendirme içeriklerini düzenleyin.",
+    items: ["Sayfa oluşturma", "İçerik güncelleme", "Yayın / taslak", "Sıralama"],
+  },
+  {
+    icon: "🔔",
+    title: "Bildirim Gönderme",
+    text: "Önemli bilgileri hedef kitlelere hızlıca iletin.",
+    items: ["Belediye duyuruları", "Etkinlik bildirimleri", "Acil bilgilendirme", "Sistem mesajları"],
+  },
+  {
+    icon: "📊",
+    title: "Temel Raporlar",
+    text: "İçerik, talep ve kullanım verilerini sade raporlarla takip edin.",
+    items: ["Duyuru görüntülemeleri", "Etkinlik sayıları", "Talep özeti", "Kullanım göstergeleri"],
+  },
+];
+
 const citizenPortal = [
   {
     icon: "👤",
@@ -231,6 +270,31 @@ export function PlatformContent() {
               <span>{icon}</span>
               <h3>{title}</h3>
               <p>{text}</p>
+            </article>
+          ))}
+        </div>
+      </section>
+
+      <section className="municipality-section">
+        <div className="business-hero">
+          <p className="eyebrow">🏛️ Belediye Portalı</p>
+          <h2>Belediyenin günlük içerik ve iletişim süreçlerini tek panelden yönetin.</h2>
+          <p>
+            MUFLOW Belediye Portalı; haber, duyuru, etkinlik, sayfa, bildirim ve temel raporlama süreçlerini sade bir
+            yönetim deneyimiyle bir araya getirir.
+          </p>
+        </div>
+        <div className="business-grid">
+          {municipalityPortal.map((feature) => (
+            <article className="business-card" key={feature.title}>
+              <div className="feature-title">
+                <span>{feature.icon}</span>
+                <h3>{feature.title}</h3>
+              </div>
+              <p>{feature.text}</p>
+              <ul>
+                {feature.items.map((item) => <li key={item}>{item}</li>)}
+              </ul>
             </article>
           ))}
         </div>

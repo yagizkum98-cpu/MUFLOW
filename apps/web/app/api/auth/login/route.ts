@@ -1,12 +1,15 @@
 import { NextResponse } from "next/server";
-import { SESSION_COOKIE, findDemoUser, signSession } from "../../../../lib/auth";
-import { findManagedUser } from "../../../../lib/user-store";
+import { SESSION_COOKIE, demoUsers, findDemoUser, signSession } from "../../../../lib/auth";
+import { findManagedUser, verifyPasswordOverride } from "../../../../lib/user-store";
 
 export async function POST(request: Request) {
   const body = await request.json().catch(() => null);
   const email = String(body?.email || "").trim().toLowerCase();
   const password = String(body?.password || "");
-  const user = await findManagedUser(email, password) || findDemoUser(email, password);
+  const passwordOverrideUser = await verifyPasswordOverride(email, password)
+    ? demoUsers.find((item) => item.email === email) || null
+    : null;
+  const user = await findManagedUser(email, password) || passwordOverrideUser || findDemoUser(email, password);
 
   if (!user) {
     return NextResponse.json({ message: "E-posta, sifre veya auth ortam degiskeni hatali." }, { status: 401 });

@@ -1,4 +1,5 @@
 import { PanelAccessStatus } from "./panel-access-status";
+import { PasswordChangePanel } from "./password-change-panel";
 
 type PanelModule = {
   icon: string;
@@ -41,6 +42,8 @@ export function PanelSection({ eyebrow, title, text, stats, modules, panelKey }:
       </section>
 
       {panelKey ? <PanelAccessStatus panel={panelKey} /> : null}
+
+      <PasswordChangePanel />
 
       <section className="business-panel-grid">
         {modules.map((module) => (

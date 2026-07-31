@@ -2,6 +2,7 @@ import { redirect } from "next/navigation";
 import { getCurrentUser } from "../../../lib/current-user";
 import { municipalityPortalModules } from "../../../lib/municipality-portal";
 import { PanelAccessStatus } from "../panel-access-status";
+import { PasswordChangePanel } from "../password-change-panel";
 
 const liveStats = [
   ["Yayındaki haber", "0"],
@@ -44,6 +45,8 @@ export default async function MunicipalityDashboardPage() {
       </section>
 
       <PanelAccessStatus panel="municipality" />
+
+      <PasswordChangePanel />
 
       <section className="business-panel-grid">
         {municipalityPortalModules.map((module) => (

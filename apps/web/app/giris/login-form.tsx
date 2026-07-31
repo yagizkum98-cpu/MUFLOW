@@ -74,7 +74,7 @@ export function LoginForm({ nextPath }: { nextPath: string }) {
           </button>
         ))}
       </div>
-      <p className="auth-note">Demo şifresi sunucuda DEMO_AUTH_PASSWORD ortam değişkeninden okunur.</p>
+      <p className="auth-note">Admin, Belediye ve İşletme başlangıç şifresi: 1234567890. Panelden sonra değiştirilebilir.</p>
     </form>
   );
 }

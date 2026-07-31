@@ -3,6 +3,7 @@ import { getCurrentUser } from "../../../lib/current-user";
 import { permissionMatrix, superAdminModules, superAdminPortals, superAdminStats } from "../../../lib/super-admin";
 import { PackageAccessPanel } from "./package-access-panel";
 import { UserManagementPanel } from "./user-management-panel";
+import { PasswordChangePanel } from "../password-change-panel";
 
 export default async function AdminDashboardPage() {
   const user = await getCurrentUser();
@@ -70,6 +71,8 @@ export default async function AdminDashboardPage() {
       <PackageAccessPanel />
 
       <UserManagementPanel />
+
+      <PasswordChangePanel />
 
       <section className="business-panel-grid">
         {superAdminModules.map((module) => (

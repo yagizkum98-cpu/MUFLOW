@@ -12,6 +12,7 @@ type StoredManagedUser = ManagedUser & {
 
 type UserStoreState = {
   users: StoredManagedUser[];
+  passwordOverrides: Record<string, string>;
 };
 
 const encoder = new TextEncoder();
@@ -21,13 +22,13 @@ function getStore() {
   const globalState = globalThis as typeof globalThis & { [globalKey]?: UserStoreState };
 
   if (!globalState[globalKey]) {
-    globalState[globalKey] = { users: [] };
+    globalState[globalKey] = { users: [], passwordOverrides: {} };
   }
 
   return globalState[globalKey];
 }
 
-async function hashPassword(password: string) {
+export async function hashPassword(password: string) {
   const digest = await crypto.subtle.digest("SHA-256", encoder.encode(password));
   return Array.from(new Uint8Array(digest))
     .map((byte) => byte.toString(16).padStart(2, "0"))
@@ -76,6 +77,26 @@ export async function findManagedUser(email: string, password: string): Promise<
   }
 
   return toAuthUser(user);
+}
+
+export async function verifyPasswordOverride(email: string, password: string) {
+  const hash = getStore().passwordOverrides[email.trim().toLowerCase()];
+  return Boolean(hash && hash === await hashPassword(password));
+}
+
+export async function setPasswordOverride(email: string, password: string) {
+  getStore().passwordOverrides[email.trim().toLowerCase()] = await hashPassword(password);
+}
+
+export async function updateManagedUserPassword(email: string, password: string) {
+  const user = getStore().users.find((item) => item.email === email.trim().toLowerCase());
+
+  if (!user) {
+    return false;
+  }
+
+  user.passwordHash = await hashPassword(password);
+  return true;
 }
 
 export function listManagedUsers() {

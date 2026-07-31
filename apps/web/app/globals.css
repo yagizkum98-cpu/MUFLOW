@@ -186,6 +186,7 @@ a {
 :root[data-theme="dark"] .admin-package-card,
 :root[data-theme="dark"] .panel-access-status,
 :root[data-theme="dark"] .access-package,
+:root[data-theme="dark"] .password-change-panel,
 :root[data-theme="dark"] .permission-table article {
   background: var(--card);
   border-color: var(--line);
@@ -266,6 +267,7 @@ a {
 :root[data-theme="dark"] .admin-package-card p,
 :root[data-theme="dark"] .feature-api-list small,
 :root[data-theme="dark"] .access-package small,
+:root[data-theme="dark"] .password-change-panel p,
 :root[data-theme="dark"] .permission-table span,
 :root[data-theme="dark"] .permission-table small {
   color: var(--muted);
@@ -275,6 +277,7 @@ a {
 :root[data-theme="dark"] .login-button,
 :root[data-theme="dark"] .admin-user-form input,
 :root[data-theme="dark"] .admin-user-form select,
+:root[data-theme="dark"] .password-change-panel input,
 :root[data-theme="dark"] .login-card input,
 :root[data-theme="dark"] .mu-ai-panel input {
   background: var(--card-soft);
@@ -2309,6 +2312,46 @@ p {
   white-space: nowrap;
 }
 
+.password-change-panel {
+  align-items: end;
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: 22px;
+  box-shadow: 0 18px 38px rgba(15, 23, 42, 0.06);
+  display: grid;
+  gap: 18px;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1.2fr);
+  margin: 0 auto 34px;
+  max-width: 1180px;
+  padding: 24px;
+}
+
+.password-change-panel h2 {
+  margin: 6px 0 8px;
+}
+
+.password-change-panel p:not(.eyebrow) {
+  color: var(--muted);
+  font-weight: 750;
+  margin: 0;
+}
+
+.password-change-panel form {
+  display: grid;
+  gap: 10px;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.password-change-panel input {
+  background: var(--white);
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  color: var(--navy);
+  font: inherit;
+  min-height: 44px;
+  padding: 0 12px;
+}
+
 .business-hero {
   margin: 0 auto 34px;
   max-width: 860px;
@@ -2668,6 +2711,11 @@ p {
   .access-package li {
     align-items: flex-start;
     flex-direction: column;
+  }
+
+  .password-change-panel,
+  .password-change-panel form {
+    grid-template-columns: 1fr;
   }
 
   .demo-accounts {

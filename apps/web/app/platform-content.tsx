@@ -281,6 +281,37 @@ const notificationCenter = [
   },
 ];
 
+const analyticsMetrics = [
+  {
+    title: "Kullanıcı sayıları",
+    value: "12.480",
+    change: "+8.4%",
+    text: "Vatandaş, işletme ve personel kullanıcıları tek özet panelde takip edilir.",
+    bars: [42, 64, 58, 76, 84],
+  },
+  {
+    title: "Sayfa görüntülemeleri",
+    value: "98.320",
+    change: "+12.1%",
+    text: "Portal sayfalarının toplam erişimi ve en çok görüntülenen içerikler izlenir.",
+    bars: [36, 52, 70, 62, 88],
+  },
+  {
+    title: "Etkinlik katılımı",
+    value: "3.240",
+    change: "+5.7%",
+    text: "Etkinlik ilgisi, kayıt ve katılım eğilimi temel seviyede raporlanır.",
+    bars: [28, 46, 44, 68, 74],
+  },
+  {
+    title: "İşletme görüntülenmeleri",
+    value: "21.760",
+    change: "+9.8%",
+    text: "İşletme profili ve QR sayfası görünürlüğü canlı özet olarak sunulur.",
+    bars: [50, 48, 66, 78, 82],
+  },
+];
+
 const stats = [["5+", "Portal"], ["100+", "Modül"], ["API", "Ready"], ["Cloud", "Native"]];
 
 function DashboardMockup() {
@@ -451,6 +482,34 @@ export function PlatformContent() {
                 <span>{item.status}</span>
                 <span>{item.time}</span>
                 <span>{item.channel}</span>
+              </div>
+            </article>
+          ))}
+        </div>
+      </section>
+
+      <section className="analytics-section">
+        <div className="section-heading">
+          <p className="eyebrow">📈 Analitik (Temel)</p>
+          <h2>Platform performansını canlı veriyle izleyin.</h2>
+          <p>
+            Kullanıcı sayıları, sayfa görüntülemeleri, etkinlik katılımı ve işletme görüntülenmeleri MVP seviyesinde
+            anlaşılır metriklerle takip edilir.
+          </p>
+        </div>
+        <div className="analytics-grid">
+          {analyticsMetrics.map((metric) => (
+            <article className="analytics-card" key={metric.title}>
+              <div className="analytics-head">
+                <span>{metric.title}</span>
+                <strong>{metric.change}</strong>
+              </div>
+              <p className="analytics-value">{metric.value}</p>
+              <p>{metric.text}</p>
+              <div className="mini-chart" aria-hidden="true">
+                {metric.bars.map((height, index) => (
+                  <i style={{ height: `${height}%` }} key={`${metric.title}-${index}`} />
+                ))}
               </div>
             </article>
           ))}

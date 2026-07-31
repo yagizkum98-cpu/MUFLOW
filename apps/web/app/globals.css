@@ -914,6 +914,83 @@ p {
   padding: 8px 10px;
 }
 
+.analytics-section {
+  background: var(--white);
+  padding: 82px clamp(20px, 5vw, 72px);
+}
+
+.analytics-grid {
+  display: grid;
+  gap: 18px;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  margin: 0 auto;
+  max-width: 1240px;
+}
+
+.analytics-card {
+  background: var(--white);
+  border: 1px solid var(--line);
+  border-radius: 20px;
+  box-shadow: 0 18px 38px rgba(15, 23, 42, 0.06);
+  display: grid;
+  gap: 14px;
+  padding: 24px;
+}
+
+.analytics-head {
+  align-items: center;
+  display: flex;
+  gap: 12px;
+  justify-content: space-between;
+}
+
+.analytics-head span {
+  color: var(--muted);
+  font-size: 0.88rem;
+  font-weight: 850;
+}
+
+.analytics-head strong {
+  background: #dcfce7;
+  border-radius: 999px;
+  color: #166534;
+  font-size: 0.8rem;
+  padding: 6px 9px;
+}
+
+.analytics-value {
+  color: var(--navy);
+  font-size: 2.05rem;
+  font-weight: 950;
+  line-height: 1;
+  margin: 0;
+}
+
+.analytics-card p:not(.analytics-value) {
+  font-size: 0.94rem;
+  margin: 0;
+}
+
+.mini-chart {
+  align-items: flex-end;
+  background: var(--soft);
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  display: flex;
+  gap: 8px;
+  height: 96px;
+  padding: 14px;
+}
+
+.mini-chart i {
+  animation: bar 2.8s ease-in-out infinite;
+  background: linear-gradient(180deg, var(--blue), #93c5fd);
+  border-radius: 999px 999px 4px 4px;
+  display: block;
+  flex: 1;
+  min-height: 18px;
+}
+
 .business-hero {
   margin: 0 auto 34px;
   max-width: 860px;
@@ -1137,7 +1214,8 @@ p {
   .reason-grid,
   .pricing-grid,
   .steps,
-  .stats {
+  .stats,
+  .analytics-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
@@ -1205,6 +1283,7 @@ p {
   .logo-grid,
   .audience-grid,
   .stats,
+  .analytics-grid,
   .feature-matrix,
   .excluded-grid,
   .business-grid,

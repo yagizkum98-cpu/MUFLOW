@@ -342,6 +342,9 @@ export function PlatformContent() {
             MUFLOW Belediye Portalı; haber, duyuru, etkinlik, sayfa, bildirim ve temel raporlama süreçlerini sade bir
             yönetim deneyimiyle bir araya getirir.
           </p>
+          <a className="primary-button" href="mailto:demo@muflow.city?subject=MUFLOW%20Belediye%20Portal%C4%B1%20G%C3%B6r%C3%BC%C5%9Fme">
+            Konuşalım
+          </a>
         </div>
       </section>
 

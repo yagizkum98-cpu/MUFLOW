@@ -505,20 +505,6 @@ export function PlatformContent() {
             yönetim deneyimiyle bir araya getirir.
           </p>
         </div>
-        <div className="business-grid">
-          {municipalityPortal.map((feature) => (
-            <article className="business-card" key={feature.title}>
-              <div className="feature-title">
-                <span>{feature.icon}</span>
-                <h3>{feature.title}</h3>
-              </div>
-              <p>{feature.text}</p>
-              <ul>
-                {feature.items.map((item) => <li key={item}>{item}</li>)}
-              </ul>
-            </article>
-          ))}
-        </div>
       </section>
 
       <section className="citizen-section">

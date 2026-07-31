@@ -8,9 +8,20 @@ export async function POST(request: NextRequest) {
   const name = String(body?.name || "").trim();
   const email = String(body?.email || "").trim().toLowerCase();
   const password = String(body?.password || "");
+  const botFirst = Number(body?.botFirst);
+  const botSecond = Number(body?.botSecond);
+  const botAnswer = Number(body?.botAnswer);
 
   if (!name || !email || !password) {
     return NextResponse.json({ message: "Ad soyad, e-posta ve şifre zorunludur." }, { status: 400 });
+  }
+
+  if (body?.kvkkApproved !== true) {
+    return NextResponse.json({ message: "KVKK onayı olmadan vatandaş hesabı oluşturulamaz." }, { status: 400 });
+  }
+
+  if (!Number.isFinite(botFirst) || !Number.isFinite(botSecond) || botAnswer !== botFirst + botSecond) {
+    return NextResponse.json({ message: "Bot kontrolü doğrulanamadı." }, { status: 400 });
   }
 
   if (!email.includes("@")) {

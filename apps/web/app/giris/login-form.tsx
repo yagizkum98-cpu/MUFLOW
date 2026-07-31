@@ -1,29 +1,51 @@
 "use client";
 
-import { FormEvent, useState } from "react";
+import { FormEvent, useMemo, useState } from "react";
 
 type AuthMode = "login" | "register";
 
-export function LoginForm({ nextPath }: { nextPath: string }) {
-  const [mode, setMode] = useState<AuthMode>("login");
+export function LoginForm({ initialMode, nextPath }: { initialMode: AuthMode; nextPath: string }) {
+  const [mode, setMode] = useState<AuthMode>(initialMode);
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [kvkkApproved, setKvkkApproved] = useState(false);
+  const [botAnswer, setBotAnswer] = useState("");
   const [message, setMessage] = useState("");
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
+  const botCheck = useMemo(() => {
+    const first = Math.floor(Math.random() * 6) + 4;
+    const second = Math.floor(Math.random() * 5) + 2;
+    return { first, second, result: first + second };
+  }, []);
 
   async function onSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
     setError("");
     setMessage("");
+
+    if (mode === "register" && !kvkkApproved) {
+      setError("Üye olmak için KVKK metnini onaylamalısınız.");
+      return;
+    }
+
+    if (mode === "register" && Number(botAnswer) !== botCheck.result) {
+      setError("Bot kontrolü doğrulanamadı. İşlemin sonucunu doğru girin.");
+      return;
+    }
+
     setLoading(true);
 
     const endpoint = mode === "register" ? "/api/auth/register" : "/api/auth/login";
     const response = await fetch(endpoint, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(mode === "register" ? { name, email, password } : { email, password }),
+      body: JSON.stringify(
+        mode === "register"
+          ? { name, email, password, kvkkApproved, botFirst: botCheck.first, botSecond: botCheck.second, botAnswer }
+          : { email, password },
+      ),
     });
     const result = await response.json().catch(() => null);
 
@@ -34,21 +56,9 @@ export function LoginForm({ nextPath }: { nextPath: string }) {
     }
 
     if (mode === "register") {
-      const loginResponse = await fetch("/api/auth/login", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ email, password }),
-      });
-
       setLoading(false);
-
-      if (!loginResponse.ok) {
-        setMode("login");
-        setMessage("Vatandaş hesabı oluşturuldu. E-posta ve şifrenizle giriş yapabilirsiniz.");
-        return;
-      }
-
-      window.location.href = nextPath || "/dashboard/vatandas";
+      setMode("login");
+      setMessage("Vatandaş hesabı oluşturuldu. E-posta ve şifrenizle giriş yapabilirsiniz.");
       return;
     }
 
@@ -95,11 +105,33 @@ export function LoginForm({ nextPath }: { nextPath: string }) {
         />
       </label>
 
+      {mode === "register" ? (
+        <>
+          <label>
+            Bot Kontrolü: {botCheck.first} + {botCheck.second} =
+            <input
+              value={botAnswer}
+              onChange={(event) => setBotAnswer(event.target.value)}
+              inputMode="numeric"
+              placeholder="Sonuç"
+            />
+          </label>
+
+          <label className="kvkk-register-check">
+            <input checked={kvkkApproved} onChange={(event) => setKvkkApproved(event.target.checked)} type="checkbox" />
+            <span>
+              KVKK ve Gizlilik metnini okudum, vatandaş hesabı oluşturmak için kişisel verilerimin işlenmesini
+              onaylıyorum.
+            </span>
+          </label>
+        </>
+      ) : null}
+
       {error ? <p className="form-error">{error}</p> : null}
       {message ? <p className="checkout-success">{message}</p> : null}
 
       <button className="primary-button" disabled={loading} type="submit">
-        {loading ? "İşlem yapılıyor..." : mode === "register" ? "Üye Ol ve Panele Git" : "Giriş Yap"}
+        {loading ? "İşlem yapılıyor..." : mode === "register" ? "Üye Ol" : "Giriş Yap"}
       </button>
 
       <p className="auth-note">

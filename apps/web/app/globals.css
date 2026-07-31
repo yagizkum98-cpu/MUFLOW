@@ -1973,6 +1973,31 @@ p {
   color: var(--navy);
 }
 
+.login-card .kvkk-register-check {
+  align-items: start;
+  background: var(--soft);
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  display: grid;
+  gap: 10px;
+  grid-template-columns: auto minmax(0, 1fr);
+  padding: 14px;
+}
+
+.login-card .kvkk-register-check input {
+  height: 18px;
+  margin-top: 2px;
+  min-height: 18px;
+  width: 18px;
+}
+
+.login-card .kvkk-register-check span {
+  color: var(--muted);
+  font-size: 0.88rem;
+  font-weight: 750;
+  line-height: 1.5;
+}
+
 .demo-accounts button {
   background: var(--soft);
   border: 1px solid var(--line);

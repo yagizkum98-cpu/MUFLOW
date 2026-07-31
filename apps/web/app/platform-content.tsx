@@ -1,4 +1,4 @@
-import { MuAiDemo } from "./mu-ai-demo";
+import { MuAiGate } from "./mu-ai-gate";
 import { LiveStats } from "./live-stats";
 import { LiveDashboardMockup } from "./live-dashboard-mockup";
 import { LiveAnalytics } from "./live-analytics";
@@ -437,7 +437,7 @@ export function PlatformContent() {
             sorular için MVP seviyesinde canlı API ve arayüzle hazırlandı.
           </p>
         </div>
-        <MuAiDemo />
+        <MuAiGate />
       </section>
 
       <section className="analytics-section">

@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import { getCurrentUser } from "../../../../lib/current-user";
+import { updatePackageAccess } from "../../../../lib/package-control";
 
 type CheckoutItem = {
   id?: string;
@@ -34,6 +35,9 @@ export async function POST(request: NextRequest) {
   }
 
   const orderId = `MUF-${Date.now().toString(36).toUpperCase()}`;
+  const updatedPackages = items
+    .map((item) => item.id ? updatePackageAccess({ packageId: item.id, purchased: true }) : null)
+    .filter(Boolean);
 
   return NextResponse.json(
     {
@@ -50,6 +54,10 @@ export async function POST(request: NextRequest) {
         name: item.name,
         featureCount: Array.isArray(item.features) ? item.features.length : 0,
       })),
+      packageAccess: {
+        purchased: updatedPackages.length,
+        approvalRequired: true,
+      },
       message:
         paymentMethod === "card"
           ? "Kart ödeme oturumu oluşturuldu. Ödeme sağlayıcısı entegrasyonu bağlandığında yönlendirme yapılır."

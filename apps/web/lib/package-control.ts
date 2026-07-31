@@ -194,3 +194,9 @@ export function getPanelAccess(panel: PanelKey) {
     })
     .filter((item) => item.features.length > 0);
 }
+
+export function hasActivePanelFeature(panel: PanelKey, featureId: string) {
+  return getPanelAccess(panel).some((item) =>
+    item.features.some((feature) => feature.id === featureId && feature.active),
+  );
+}

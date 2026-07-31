@@ -1,7 +1,7 @@
 import { redirect } from "next/navigation";
 import { getCurrentUser } from "../../../lib/current-user";
 import { aiModules } from "../../../lib/operation-modules";
-import { MuAiDemo } from "../../mu-ai-demo";
+import { MuAiGate } from "../../mu-ai-gate";
 import { PanelSection } from "../panel-section";
 
 export default async function AiDashboardPage() {
@@ -22,7 +22,7 @@ export default async function AiDashboardPage() {
         panelKey="ai"
       />
       <section className="mu-ai-section">
-        <MuAiDemo />
+        <MuAiGate />
       </section>
     </>
   );

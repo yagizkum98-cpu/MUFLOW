@@ -44,6 +44,7 @@ export async function createManagedUser(input: {
   email: string;
   password: string;
   role: UserRole;
+  tenantId?: string;
   createdBy: string;
 }) {
   const store = getStore();
@@ -58,6 +59,7 @@ export async function createManagedUser(input: {
     name: input.name.trim(),
     email,
     role: input.role,
+    tenantId: input.tenantId,
     createdAt: new Date().toISOString(),
     createdBy: input.createdBy,
     status: "ACTIVE",
@@ -109,6 +111,7 @@ function toAuthUser(user: StoredManagedUser): AuthUser {
     name: user.name,
     email: user.email,
     role: user.role,
+    tenantId: user.tenantId,
   };
 }
 

@@ -15,6 +15,7 @@ export type AuthUser = {
   name: string;
   email: string;
   role: UserRole;
+  tenantId?: string;
 };
 
 type TokenPayload = AuthUser & {
@@ -30,24 +31,28 @@ export const demoUsers: AuthUser[] = [
     name: "MUFLOW Super Admin",
     email: "admin@muflow.city",
     role: "SUPER_ADMIN",
+    tenantId: "tenant_platform",
   },
   {
     id: "usr_municipality",
     name: "Belediye Yoneticisi",
     email: "belediye@muflow.city",
     role: "MUNICIPALITY_ADMIN",
+    tenantId: "tenant_mugla",
   },
   {
     id: "usr_business",
     name: "Isletme Yetkilisi",
     email: "isletme@muflow.city",
     role: "BUSINESS_OWNER",
+    tenantId: "tenant_fethiye",
   },
   {
     id: "usr_citizen",
     name: "Vatandas",
     email: "vatandas@muflow.city",
     role: "CITIZEN",
+    tenantId: "tenant_fethiye",
   },
 ];
 
@@ -135,6 +140,7 @@ export async function verifySession(token?: string): Promise<AuthUser | null> {
       name: payload.name,
       email: payload.email,
       role: payload.role,
+      tenantId: payload.tenantId,
     };
   } catch {
     return null;

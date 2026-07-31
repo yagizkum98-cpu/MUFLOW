@@ -2,6 +2,7 @@ import { PanelKey } from "./package-control";
 
 export type WorkspaceRecord = {
   id: string;
+  tenantId?: string;
   panel: PanelKey;
   moduleId: string;
   title: string;
@@ -37,9 +38,11 @@ export function createWorkspaceRecord(input: {
   title: string;
   description: string;
   createdBy: string;
+  tenantId?: string;
 }) {
   const record: WorkspaceRecord = {
     id: `rec_${Date.now().toString(36)}_${Math.random().toString(36).slice(2, 8)}`,
+    tenantId: input.tenantId,
     panel: input.panel,
     moduleId: input.moduleId,
     title: input.title.trim(),

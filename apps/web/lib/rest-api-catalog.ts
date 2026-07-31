@@ -23,6 +23,8 @@ export const restApiCatalog = [
       ["GET", "/api/panel/access?panel=business", "Panelin paket/özellik erişim durumunu döndürür."],
       ["GET", "/api/panel/workspace?panel=citizen", "Panel çalışma kayıtlarını listeler."],
       ["POST", "/api/panel/workspace", "Panel içinde yeni MVP çalışma kaydı oluşturur."],
+      ["GET", "/api/tenants", "Platform > Büyükşehir > İlçe tenant ağacını döndürür."],
+      ["GET", "/api/tenant/context", "Giriş yapan kullanıcının tenant bağlamını ve görebildiği veriyi döndürür."],
     ],
   },
   {
@@ -48,8 +50,14 @@ export const restApiResources = [
   {
     name: "municipalities",
     path: "/api/rest/v1/municipalities",
-    description: "Belediye tenant ve temel kurum bilgileri.",
-    sample: [{ id: "mun_demo", name: "MUFLOW Demo Belediyesi", status: "active" }],
+    description: "Belediye tenant ve temel kurum bilgileri. Multi-tenant yapı her kurumun kendi verisini görmesi üzerine kuruludur.",
+    sample: [
+      { id: "tenant_mugla", name: "Muğla Büyükşehir", parentTenantId: "tenant_platform", status: "active" },
+      { id: "tenant_fethiye", name: "Fethiye", parentTenantId: "tenant_mugla", status: "active" },
+      { id: "tenant_marmaris", name: "Marmaris", parentTenantId: "tenant_mugla", status: "active" },
+      { id: "tenant_bodrum", name: "Bodrum", parentTenantId: "tenant_mugla", status: "active" },
+      { id: "tenant_datca", name: "Datça", parentTenantId: "tenant_mugla", status: "active" },
+    ],
   },
   {
     name: "businesses",

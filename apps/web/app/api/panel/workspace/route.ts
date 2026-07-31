@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from "next/server";
 import { getCurrentUser } from "../../../../lib/current-user";
 import { PanelKey } from "../../../../lib/package-control";
 import { createWorkspaceRecord, listWorkspaceRecords } from "../../../../lib/panel-workspace-store";
+import { getVisibleTenantIds } from "../../../../lib/tenancy";
 
 const panelKeys: PanelKey[] = ["municipality", "business", "citizen", "guide", "notifications", "analytics", "ai", "admin"];
 
@@ -20,11 +21,14 @@ export async function GET(request: NextRequest) {
     return NextResponse.json({ message: "Geçerli panel anahtarı gerekir." }, { status: 400 });
   }
 
+  const visibleTenantIds = getVisibleTenantIds(user);
+  const records = listWorkspaceRecords(panel).filter((record) => !record.tenantId || visibleTenantIds.includes(record.tenantId));
+
   return NextResponse.json(
     {
       generatedAt: new Date().toISOString(),
       panel,
-      records: listWorkspaceRecords(panel),
+      records,
     },
     { headers: { "Cache-Control": "no-store, max-age=0" } },
   );
@@ -57,6 +61,7 @@ export async function POST(request: NextRequest) {
     title,
     description,
     createdBy: user.email,
+    tenantId: user.tenantId,
   });
 
   return NextResponse.json(

@@ -15,15 +15,35 @@ model User {
   passwordHash     String?
   role             UserRole
   status           AccountStatus     @default(ACTIVE)
+  tenantId         String?
+  tenant           Tenant?           @relation(fields: [tenantId], references: [id])
   createdAt        DateTime          @default(now())
   updatedAt        DateTime          @updatedAt
   workspaceRecords WorkspaceRecord[]
+}
+
+model Tenant {
+  id             String         @id @default(cuid())
+  name           String
+  slug           String         @unique
+  type           TenantType
+  status         String         @default("active")
+  parentTenantId String?
+  parentTenant   Tenant?        @relation("TenantHierarchy", fields: [parentTenantId], references: [id])
+  children       Tenant[]       @relation("TenantHierarchy")
+  users          User[]
+  municipalities Municipality[]
+  businesses     Business[]
+  createdAt      DateTime       @default(now())
+  updatedAt      DateTime       @updatedAt
 }
 
 model Municipality {
   id        String   @id @default(cuid())
   name      String
   slug      String   @unique
+  tenantId  String?
+  tenant    Tenant?  @relation(fields: [tenantId], references: [id])
   status    String   @default("active")
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
@@ -33,6 +53,8 @@ model Business {
   id        String   @id @default(cuid())
   name      String
   category  String?
+  tenantId  String?
+  tenant    Tenant?  @relation(fields: [tenantId], references: [id])
   status    String   @default("draft")
   partner   Boolean  @default(false)
   createdAt DateTime @default(now())
@@ -62,6 +84,7 @@ model PackageAccess {
 
 model WorkspaceRecord {
   id          String   @id @default(cuid())
+  tenantId    String?
   panel       String
   moduleId    String
   title       String
@@ -84,4 +107,11 @@ enum UserRole {
 enum AccountStatus {
   ACTIVE
   PASSIVE
+}
+
+enum TenantType {
+  PLATFORM
+  METROPOLITAN
+  DISTRICT
+  ORGANIZATION
 }

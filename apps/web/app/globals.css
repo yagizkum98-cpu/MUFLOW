@@ -196,6 +196,8 @@ a {
 :root[data-theme="dark"] .muflow-pass-card,
 :root[data-theme="dark"] .pass-revenue-card,
 :root[data-theme="dark"] .pass-flow-list div,
+:root[data-theme="dark"] .tenant-rule-card,
+:root[data-theme="dark"] .tenant-tree-card,
 :root[data-theme="dark"] .permission-table article {
   background: var(--card);
   border-color: var(--line);
@@ -287,6 +289,9 @@ a {
 :root[data-theme="dark"] .muflow-pass-card p,
 :root[data-theme="dark"] .muflow-pass-card li,
 :root[data-theme="dark"] .pass-flow-list span,
+:root[data-theme="dark"] .tenant-rule-card span,
+:root[data-theme="dark"] .tenant-rule-card small,
+:root[data-theme="dark"] .tenant-tree-list span,
 :root[data-theme="dark"] .permission-table span,
 :root[data-theme="dark"] .permission-table small {
   color: var(--muted);
@@ -2705,6 +2710,70 @@ p {
   width: 32px;
 }
 
+.tenant-panel {
+  display: grid;
+  gap: 22px;
+  margin: 0 auto 34px;
+  max-width: 1180px;
+}
+
+.tenant-layout {
+  display: grid;
+  gap: 18px;
+  grid-template-columns: minmax(280px, 0.7fr) minmax(0, 1.3fr);
+}
+
+.tenant-rule-card,
+.tenant-tree-card {
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: 22px;
+  box-shadow: 0 18px 38px rgba(15, 23, 42, 0.06);
+  padding: 24px;
+}
+
+.tenant-rule-card {
+  align-content: start;
+  display: grid;
+  gap: 10px;
+}
+
+.tenant-rule-card strong,
+.tenant-tree-list strong {
+  color: var(--navy);
+}
+
+.tenant-rule-card span,
+.tenant-rule-card small,
+.tenant-tree-list span {
+  color: var(--muted);
+  font-weight: 800;
+  line-height: 1.45;
+}
+
+.tenant-tree-list {
+  display: grid;
+  gap: 12px;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.tenant-tree-list .tenant-tree-list {
+  border-left: 2px solid var(--line);
+  margin-top: 12px;
+  padding-left: 18px;
+}
+
+.tenant-tree-list li > div {
+  background: var(--soft);
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  display: grid;
+  gap: 4px;
+  padding: 14px;
+}
+
 .business-hero {
   margin: 0 auto 34px;
   max-width: 860px;
@@ -2941,7 +3010,8 @@ p {
   .workspace-tabs,
   .workspace-body,
   .citizen-package-grid,
-  .muflow-pass-layout {
+  .muflow-pass-layout,
+  .tenant-layout {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
@@ -3036,6 +3106,7 @@ p {
   .workspace-body,
   .citizen-package-grid,
   .muflow-pass-layout,
+  .tenant-layout,
   .feature-matrix,
   .excluded-grid,
   .business-grid,

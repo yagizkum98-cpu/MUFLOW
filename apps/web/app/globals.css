@@ -1478,6 +1478,13 @@ p {
   margin: 0;
 }
 
+.live-status {
+  color: var(--blue);
+  font-size: 0.76rem;
+  font-weight: 900;
+  text-transform: uppercase;
+}
+
 .mini-chart {
   align-items: flex-end;
   background: var(--soft);

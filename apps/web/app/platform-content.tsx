@@ -322,27 +322,6 @@ const securityFeatures = [
   },
 ];
 
-function DashboardMockup() {
-  return (
-    <div className="mockup-wrap" aria-label="Canlı dashboard ve telefon mockup">
-      <div className="dashboard">
-        <div className="dash-top"><span /><span /><span /></div>
-        <div className="dash-grid">
-          <div className="metric tall"><strong>0%</strong><small>Talep çözüm oranı</small></div>
-          <div className="metric"><strong>0</strong><small>Aktif işlem</small></div>
-          <div className="metric"><strong>0</strong><small>Entegrasyon</small></div>
-          <div className="chart"><i /><i /><i /><i /><i /></div>
-        </div>
-      </div>
-      <div className="hero-phone">
-        <div className="phone-header">MU AI</div>
-        <div className="bubble user">Bugün etkinlik var mı?</div>
-        <div className="bubble ai">Bugün 18.00'de Kent Meydanında açık hava konseri var.</div>
-      </div>
-    </div>
-  );
-}
-
 function RevenueModelSection() {
   return (
     <section className="section pricing-section" id="paketler">

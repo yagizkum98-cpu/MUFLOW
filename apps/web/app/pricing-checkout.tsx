@@ -17,7 +17,7 @@ type BusinessPlan = {
 
 type CartItem = {
   id: string;
-  segment: "Belediye" | "İşletme";
+  segment: "Belediye" | "İşletme" | "Modül";
   name: string;
   summary: string;
   features: string[];
@@ -33,7 +33,45 @@ const packagePrices: Record<string, string> = {
   "business-ücretsiz": "0 TL",
   "business-premium": "Yıllık teklif + KDV",
   "business-premium+": "Yıllık teklif + KDV",
+  "module-mu-ai": "120.000 TL / yıl + KDV",
+  "module-city-guide": "75.000 TL / yıl + KDV",
+  "module-notifications": "60.000 TL / yıl + KDV",
+  "module-analytics": "90.000 TL / yıl + KDV",
+  "module-rest-api": "100.000 TL / yıl + KDV",
 };
+
+const moduleAddOns = [
+  {
+    id: "module-mu-ai",
+    name: "MU AI",
+    summary: "Yapay zekâ destekli şehir asistanı",
+    features: ["Belediye hizmetleri soru-cevap", "SSS", "Şehir rehberi desteği", "Etkinlik önerileri"],
+  },
+  {
+    id: "module-city-guide",
+    name: "Dijital Şehir Rehberi",
+    summary: "Harita destekli şehir noktaları ve rota deneyimi",
+    features: ["Gezilecek yerler", "Parklar", "Plajlar", "Müzeler", "Otopark bilgileri", "Harita üzerinde gösterim"],
+  },
+  {
+    id: "module-notifications",
+    name: "Bildirim Merkezi",
+    summary: "Portal, mobil ve acil durum bildirim akışı",
+    features: ["Belediye duyuruları", "Etkinlik bildirimleri", "Acil durum bilgilendirmeleri", "Sistem bildirimleri"],
+  },
+  {
+    id: "module-analytics",
+    name: "Temel Analitik",
+    summary: "Canlı performans ve kullanım metrikleri",
+    features: ["Kullanıcı sayıları", "Sayfa görüntülemeleri", "Etkinlik katılımı", "İşletme görüntülenmeleri"],
+  },
+  {
+    id: "module-rest-api",
+    name: "REST API",
+    summary: "Kurum ve entegrasyon geliştiricileri için API erişimi",
+    features: ["REST API altyapısı", "API anahtarı yönetimi", "Webhook desteği", "Harita servisleri entegrasyonu"],
+  },
+];
 
 function normalizeId(value: string) {
   return value.toLocaleLowerCase("tr-TR").replace(/\s+/g, "-");
@@ -194,17 +232,52 @@ export function PricingCheckout({
         </div>
       </article>
 
+      <article className="revenue-card wide">
+        <p className="plan-label">Modül Bazlı Ücretlendirme</p>
+        <p>Her modül yıllık fiyat + KDV ile ayrı satın alınabilir; satın alma sonrası Süper Admin onayıyla açılır.</p>
+        <div className="module-addon-grid">
+          {moduleAddOns.map((module) => (
+            <div key={module.id}>
+              <div className="package-card-head">
+                <h3>{module.name}</h3>
+                <button
+                  aria-label={`${module.name} modülünü sepete ekle`}
+                  className="add-package-button"
+                  type="button"
+                  onClick={() =>
+                    addItem({
+                      id: module.id,
+                      segment: "Modül",
+                      name: module.name,
+                      summary: `${module.summary} / ${packagePrices[module.id]}`,
+                      features: module.features,
+                    })
+                  }
+                >
+                  +
+                </button>
+              </div>
+              <p>{module.summary}</p>
+              <ul>
+                {module.features.map((feature) => <li key={feature}>{feature}</li>)}
+              </ul>
+              <small>{packagePrices[module.id]}</small>
+            </div>
+          ))}
+        </div>
+      </article>
+
       <aside className="checkout-cart">
         <div className="cart-head">
           <div>
             <p className="plan-label">Sepet</p>
-            <h3>{cart.length} paket seçildi</h3>
+            <h3>{cart.length} ürün seçildi</h3>
           </div>
           <span>{cartFeatureCount} özellik</span>
         </div>
 
         {cart.length === 0 ? (
-          <p className="empty-cart">Paketlerin yanındaki + butonuna basarak sepetinizi oluşturun.</p>
+          <p className="empty-cart">Paket veya modüllerin yanındaki + butonuna basarak sepetinizi oluşturun.</p>
         ) : (
           <div className="cart-items">
             {cart.map((item) => (

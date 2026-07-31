@@ -215,6 +215,7 @@ a {
 :root[data-theme="dark"] .feature-title span,
 :root[data-theme="dark"] .pricing-card li::before,
 :root[data-theme="dark"] .b2b-grid > div,
+:root[data-theme="dark"] .module-addon-grid > div,
 :root[data-theme="dark"] .cart-item,
 :root[data-theme="dark"] .kvkk-box,
 :root[data-theme="dark"] .payment-box,
@@ -995,11 +996,26 @@ p {
   margin-top: 18px;
 }
 
-.b2b-grid > div {
+.module-addon-grid {
+  display: grid;
+  gap: 14px;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  margin-top: 18px;
+}
+
+.b2b-grid > div,
+.module-addon-grid > div {
   background: var(--soft);
   border: 1px solid var(--line);
   border-radius: 18px;
   padding: 18px;
+}
+
+.module-addon-grid p {
+  color: var(--muted);
+  font-size: 0.92rem;
+  line-height: 1.5;
+  margin: 8px 0 12px;
 }
 
 .revenue-note {
@@ -3071,6 +3087,7 @@ p {
   .checkout-layout,
   .package-table,
   .b2b-grid,
+  .module-addon-grid,
   .steps,
   .stats,
   .analytics-grid,
@@ -3164,6 +3181,7 @@ p {
   .checkout-layout,
   .package-table,
   .b2b-grid,
+  .module-addon-grid,
   .platform-grid,
   .steps,
   .logo-grid,

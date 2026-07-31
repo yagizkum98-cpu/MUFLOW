@@ -4,6 +4,7 @@ import { permissionMatrix, superAdminModules, superAdminPortals, superAdminStats
 import { PackageAccessPanel } from "./package-access-panel";
 import { UserManagementPanel } from "./user-management-panel";
 import { PasswordChangePanel } from "../password-change-panel";
+import { PanelWorkspace } from "../panel-workspace";
 
 export default async function AdminDashboardPage() {
   const user = await getCurrentUser();
@@ -69,6 +70,8 @@ export default async function AdminDashboardPage() {
       </section>
 
       <PackageAccessPanel />
+
+      <PanelWorkspace panel="admin" />
 
       <UserManagementPanel />
 

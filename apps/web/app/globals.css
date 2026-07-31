@@ -187,6 +187,10 @@ a {
 :root[data-theme="dark"] .panel-access-status,
 :root[data-theme="dark"] .access-package,
 :root[data-theme="dark"] .password-change-panel,
+:root[data-theme="dark"] .panel-workspace,
+:root[data-theme="dark"] .workspace-action-card,
+:root[data-theme="dark"] .workspace-records,
+:root[data-theme="dark"] .workspace-record,
 :root[data-theme="dark"] .permission-table article {
   background: var(--card);
   border-color: var(--line);
@@ -268,6 +272,10 @@ a {
 :root[data-theme="dark"] .feature-api-list small,
 :root[data-theme="dark"] .access-package small,
 :root[data-theme="dark"] .password-change-panel p,
+:root[data-theme="dark"] .workspace-action-card p,
+:root[data-theme="dark"] .workspace-records p,
+:root[data-theme="dark"] .workspace-record span,
+:root[data-theme="dark"] .workspace-record small,
 :root[data-theme="dark"] .permission-table span,
 :root[data-theme="dark"] .permission-table small {
   color: var(--muted);
@@ -278,6 +286,10 @@ a {
 :root[data-theme="dark"] .admin-user-form input,
 :root[data-theme="dark"] .admin-user-form select,
 :root[data-theme="dark"] .password-change-panel input,
+:root[data-theme="dark"] .workspace-action-card input,
+:root[data-theme="dark"] .workspace-action-card textarea,
+:root[data-theme="dark"] .workspace-tabs,
+:root[data-theme="dark"] .workspace-tabs button,
 :root[data-theme="dark"] .login-card input,
 :root[data-theme="dark"] .mu-ai-panel input {
   background: var(--card-soft);
@@ -2352,6 +2364,142 @@ p {
   padding: 0 12px;
 }
 
+.panel-workspace {
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: 24px;
+  box-shadow: 0 18px 38px rgba(15, 23, 42, 0.06);
+  display: grid;
+  gap: 18px;
+  margin: 0 auto 34px;
+  max-width: 1180px;
+  padding: 24px;
+}
+
+.panel-workspace-head {
+  align-items: center;
+  display: flex;
+  gap: 16px;
+  justify-content: space-between;
+}
+
+.panel-workspace-head h2 {
+  margin: 6px 0 0;
+}
+
+.panel-workspace-head > span {
+  background: var(--navy);
+  border-radius: 999px;
+  color: var(--white);
+  font-weight: 950;
+  padding: 10px 12px;
+  white-space: nowrap;
+}
+
+.workspace-tabs {
+  background: var(--soft);
+  border: 1px solid var(--line);
+  border-radius: 18px;
+  display: grid;
+  gap: 8px;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  padding: 8px;
+}
+
+.workspace-tabs button {
+  align-items: center;
+  background: transparent;
+  border: 0;
+  border-radius: 14px;
+  color: var(--navy);
+  cursor: pointer;
+  display: flex;
+  font-weight: 950;
+  gap: 8px;
+  justify-content: center;
+  min-height: 44px;
+  padding: 0 10px;
+  transition: background 180ms ease, color 180ms ease, transform 180ms ease;
+}
+
+.workspace-tabs button.active,
+.workspace-tabs button:hover {
+  background: var(--blue);
+  color: var(--white);
+  transform: translateY(-1px);
+}
+
+.workspace-body {
+  display: grid;
+  gap: 18px;
+  grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
+}
+
+.workspace-action-card,
+.workspace-records {
+  background: var(--white);
+  border: 1px solid var(--line);
+  border-radius: 20px;
+  display: grid;
+  gap: 14px;
+  padding: 20px;
+}
+
+.workspace-action-card p,
+.workspace-records p {
+  color: var(--muted);
+  font-weight: 750;
+  line-height: 1.45;
+  margin: 0;
+}
+
+.workspace-action-card form {
+  display: grid;
+  gap: 10px;
+}
+
+.workspace-action-card input,
+.workspace-action-card textarea {
+  background: var(--white);
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  color: var(--navy);
+  font: inherit;
+  padding: 12px;
+}
+
+.workspace-action-card textarea {
+  min-height: 104px;
+  resize: vertical;
+}
+
+.workspace-records > div:first-child {
+  align-items: center;
+  display: flex;
+  justify-content: space-between;
+}
+
+.workspace-records strong,
+.workspace-record strong {
+  color: var(--navy);
+}
+
+.workspace-records span,
+.workspace-record span,
+.workspace-record small {
+  color: var(--muted);
+  font-weight: 750;
+}
+
+.workspace-record {
+  background: var(--soft);
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  display: grid;
+  gap: 5px;
+  padding: 14px;
+}
+
 .business-hero {
   margin: 0 auto 34px;
   max-width: 860px;
@@ -2584,7 +2732,9 @@ p {
   .stats,
   .analytics-grid,
   .security-grid,
-  .quick-question-grid {
+  .quick-question-grid,
+  .workspace-tabs,
+  .workspace-body {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
@@ -2675,6 +2825,8 @@ p {
   .analytics-grid,
   .security-grid,
   .quick-question-grid,
+  .workspace-tabs,
+  .workspace-body,
   .feature-matrix,
   .excluded-grid,
   .business-grid,
@@ -2716,6 +2868,12 @@ p {
   .password-change-panel,
   .password-change-panel form {
     grid-template-columns: 1fr;
+  }
+
+  .panel-workspace-head,
+  .workspace-records > div:first-child {
+    align-items: flex-start;
+    flex-direction: column;
   }
 
   .demo-accounts {

@@ -1,5 +1,6 @@
 import { PanelAccessStatus } from "./panel-access-status";
 import { PasswordChangePanel } from "./password-change-panel";
+import { PanelWorkspace, PanelWorkspaceKey } from "./panel-workspace";
 
 type PanelModule = {
   icon: string;
@@ -42,6 +43,8 @@ export function PanelSection({ eyebrow, title, text, stats, modules, panelKey }:
       </section>
 
       {panelKey ? <PanelAccessStatus panel={panelKey} /> : null}
+
+      {panelKey ? <PanelWorkspace panel={panelKey as PanelWorkspaceKey} /> : null}
 
       <PasswordChangePanel />
 

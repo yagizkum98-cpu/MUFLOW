@@ -3,6 +3,7 @@ import { getCurrentUser } from "../../../lib/current-user";
 import { municipalityPortalModules } from "../../../lib/municipality-portal";
 import { PanelAccessStatus } from "../panel-access-status";
 import { PasswordChangePanel } from "../password-change-panel";
+import { PanelWorkspace } from "../panel-workspace";
 
 const liveStats = [
   ["Yayındaki haber", "0"],
@@ -45,6 +46,8 @@ export default async function MunicipalityDashboardPage() {
       </section>
 
       <PanelAccessStatus panel="municipality" />
+
+      <PanelWorkspace panel="municipality" />
 
       <PasswordChangePanel />
 

@@ -3,6 +3,7 @@ import { businessPortalModules } from "../../../lib/business-portal";
 import { getCurrentUser } from "../../../lib/current-user";
 import { PanelAccessStatus } from "../panel-access-status";
 import { PasswordChangePanel } from "../password-change-panel";
+import { PanelWorkspace } from "../panel-workspace";
 
 const liveStats = [
   ["Profil görüntülenme", "0"],
@@ -45,6 +46,8 @@ export default async function BusinessDashboardPage() {
       </section>
 
       <PanelAccessStatus panel="business" />
+
+      <PanelWorkspace panel="business" />
 
       <PasswordChangePanel />
 

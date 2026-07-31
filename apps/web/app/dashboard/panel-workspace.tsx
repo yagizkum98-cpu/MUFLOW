@@ -153,7 +153,7 @@ const panelModules: Record<string, WorkspaceModule[]> = {
   admin: [
     { id: "user", icon: "👥", title: "Kullanıcı", text: "Rol, erişim ve hesap durumunu takip edin.", action: "Kullanıcı İşlemi" },
     { id: "package", icon: "✅", title: "Paket Onayı", text: "Satın alınan paket ve özellik API onayı.", action: "Paket İşlemi" },
-    { id: "api", icon: "🔗", title: "API", text: "Endpoint, webhook ve entegrasyon kontrolü.", action: "API Kaydı" },
+    { id: "api", icon: "🔗", title: "REST API", text: "Katalog, health, v1 resource ve entegrasyon kontrolü.", action: "API Kaydı" },
     { id: "system", icon: "⚙️", title: "Sistem", text: "Tema, dil, güvenlik ve servis durumu.", action: "Sistem Kaydı" },
   ],
 };

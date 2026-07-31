@@ -123,6 +123,45 @@ const businessPortal = [
   },
 ];
 
+const citizenPortal = [
+  {
+    icon: "👤",
+    title: "Profil",
+    text: "Vatandaş bilgilerini ve temel hesap ayarlarını tek yerden yönetin.",
+    items: ["Ad soyad", "İletişim bilgileri", "Adres bilgisi", "Hesap tercihleri"],
+  },
+  {
+    icon: "📝",
+    title: "Talep / Şikayet Oluşturma",
+    text: "Belediyeye hızlıca talep, öneri veya şikayet iletin.",
+    items: ["Yeni talep oluşturma", "Kategori seçimi", "Konum ekleme", "Durum takibi"],
+  },
+  {
+    icon: "📢",
+    title: "Duyurular",
+    text: "Belediye duyurularını güncel ve düzenli şekilde takip edin.",
+    items: ["Güncel duyurular", "Acil bilgilendirmeler", "Kategoriye göre listeleme"],
+  },
+  {
+    icon: "📅",
+    title: "Etkinlik Takvimi",
+    text: "Şehirdeki etkinlikleri tarih ve kategoriye göre görüntüleyin.",
+    items: ["Yaklaşan etkinlikler", "Tarih ve saat", "Konum", "Etkinlik detayı"],
+  },
+  {
+    icon: "🗺️",
+    title: "Şehir Rehberi",
+    text: "Şehrin önemli noktalarına ve hizmetlerine kolayca ulaşın.",
+    items: ["Gezilecek yerler", "Parklar", "Sağlık noktaları", "Otopark bilgileri"],
+  },
+  {
+    icon: "🔔",
+    title: "Bildirimler",
+    text: "Size özel duyuru, etkinlik ve talep bildirimlerini takip edin.",
+    items: ["Talep güncellemeleri", "Etkinlik bildirimleri", "Belediye duyuruları"],
+  },
+];
+
 const stats = [["5+", "Portal"], ["100+", "Modül"], ["API", "Ready"], ["Cloud", "Native"]];
 
 function DashboardMockup() {
@@ -192,6 +231,31 @@ export function PlatformContent() {
               <span>{icon}</span>
               <h3>{title}</h3>
               <p>{text}</p>
+            </article>
+          ))}
+        </div>
+      </section>
+
+      <section className="citizen-section">
+        <div className="business-hero">
+          <p className="eyebrow">👥 Vatandaş Portalı</p>
+          <h2>Belediye hizmetlerine hızlı ve kolay erişin.</h2>
+          <p>
+            MUFLOW Vatandaş Portalı; vatandaşların profilini yönetmesini, talep ve şikayet oluşturmasını, duyuru ve
+            etkinlikleri takip etmesini sağlayan sade bir şehir deneyimi sunar.
+          </p>
+        </div>
+        <div className="business-grid">
+          {citizenPortal.map((feature) => (
+            <article className="business-card" key={feature.title}>
+              <div className="feature-title">
+                <span>{feature.icon}</span>
+                <h3>{feature.title}</h3>
+              </div>
+              <p>{feature.text}</p>
+              <ul>
+                {feature.items.map((item) => <li key={item}>{item}</li>)}
+              </ul>
             </article>
           ))}
         </div>

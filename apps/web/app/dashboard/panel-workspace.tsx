@@ -20,6 +20,70 @@ type WorkspaceRecord = {
   createdAt: string;
 };
 
+const citizenPackages = [
+  {
+    name: "MUFLOW Free",
+    badge: "Ücretsiz",
+    price: "0 TL",
+    color: "green",
+    text: "Her vatandaş için temel belediye hizmetleri ücretsizdir.",
+    features: [
+      "Belediye duyuruları",
+      "Etkinlik takvimi",
+      "Şehir rehberi",
+      "Talep / Şikâyet",
+      "Bildirimler",
+      "Harita",
+      "MU AI günlük sınırlı kullanım",
+    ],
+  },
+  {
+    name: "MUFLOW Plus",
+    badge: "Kişisel",
+    price: "49 TL / ay",
+    color: "blue",
+    text: "Daha fazla kişiselleştirme isteyen kullanıcılar için.",
+    features: [
+      "Sınırsız MU AI",
+      "İlgi alanına göre etkinlik önerileri",
+      "Favori işletmeler",
+      "Favori rotalar",
+      "Gelişmiş bildirim filtreleri",
+      "Kişisel şehir takvimi",
+      "QR Dijital Kart",
+    ],
+  },
+  {
+    name: "MUFLOW Explorer",
+    badge: "Turizm",
+    price: "89 TL / ay",
+    color: "purple",
+    text: "Turistler ve şehirde aktif zaman geçirmek isteyen kullanıcılar için.",
+    features: [
+      "Hazır gezi rotaları",
+      "Sesli rehber",
+      "Çevrimdışı haritalar",
+      "Yapay zekâ ile gezi planı",
+      "Yerel etkinlik önerileri",
+      "İşletme fırsatları ve kampanyaları",
+    ],
+  },
+  {
+    name: "MUFLOW Family",
+    badge: "Aile",
+    price: "69 TL / ay",
+    color: "yellow",
+    text: "Ailelere yönelik şehir yaşamı ve güvenlik destek paketi.",
+    features: [
+      "Çocuk etkinliği bildirimleri",
+      "Aile takvimi",
+      "Park ve oyun alanı önerileri",
+      "Belediye kursları bildirimleri",
+      "Acil durum aile bildirimleri",
+    ],
+  },
+];
+
 const panelModules: Record<string, WorkspaceModule[]> = {
   municipality: [
     { id: "news", icon: "📰", title: "Haber", text: "Haber başlığı, içerik ve yayın durumu oluşturun.", action: "Haber Oluştur" },
@@ -32,6 +96,7 @@ const panelModules: Record<string, WorkspaceModule[]> = {
     { id: "profile", icon: "👤", title: "Profil", text: "Vatandaş profil ve iletişim güncelleme süreci.", action: "Profil Kaydı" },
     { id: "event-follow", icon: "📅", title: "Etkinlik Takibi", text: "Katılım ve hatırlatma isteği oluşturun.", action: "Etkinlik Kaydet" },
     { id: "notification", icon: "🔔", title: "Bildirim", text: "Kişisel bildirim tercihi kaydı açın.", action: "Bildirim Ayarla" },
+    { id: "packages", icon: "💳", title: "Paketler", text: "Temel hizmetler ücretsiz, ek dijital hizmetler isteğe bağlıdır.", action: "Paket Talebi" },
   ],
   business: [
     { id: "profile", icon: "📋", title: "İşletme Profili", text: "İşletme adı, kategori, adres ve iletişim bilgisi.", action: "Profil Kaydet" },
@@ -128,6 +193,32 @@ export function PanelWorkspace({ panel }: { panel: PanelWorkspaceKey }) {
     await loadRecords();
   }
 
+  async function selectCitizenPackage(packageName: string, price: string, features: string[]) {
+    setMessage("");
+    setLoading(true);
+
+    const response = await fetch("/api/panel/workspace", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        panel,
+        moduleId: "packages",
+        title: packageName,
+        description: `${price} / ${features.join(", ")}`,
+      }),
+    });
+    const data = await response.json().catch(() => null);
+    setLoading(false);
+
+    if (!response.ok) {
+      setMessage(data?.message || "Paket talebi oluşturulamadı.");
+      return;
+    }
+
+    setMessage(`${packageName} paket talebi canlı kayıt listesine eklendi.`);
+    await loadRecords();
+  }
+
   return (
     <section className="panel-workspace">
       <div className="panel-workspace-head">
@@ -159,14 +250,24 @@ export function PanelWorkspace({ panel }: { panel: PanelWorkspaceKey }) {
             <h3>{activeModule.title}</h3>
           </div>
           <p>{activeModule.text}</p>
-          <form onSubmit={onSubmit}>
-            <input onChange={(event) => setTitle(event.target.value)} placeholder="Başlık" value={title} />
-            <textarea onChange={(event) => setDescription(event.target.value)} placeholder="Kısa açıklama" value={description} />
-            <button className="primary-button" disabled={loading} type="submit">
-              {loading ? "Kaydediliyor..." : activeModule.action}
-            </button>
-          </form>
-          {message ? <p className={message.includes("oluşturuldu") ? "checkout-success" : "form-error"}>{message}</p> : null}
+          {panel === "citizen" && activeModuleId === "packages" ? (
+            <div className="citizen-package-note">
+              <strong>Temel belediye hizmetleri ücretsiz olmalıdır.</strong>
+              <span>
+                Şikâyet oluşturma, duyurular, etkinlik bilgileri, başvuru süreçleri ve belediye hizmetlerine erişim
+                ücretli değildir. Ücretli paketler yalnızca isteğe bağlı ek dijital hizmetler içindir.
+              </span>
+            </div>
+          ) : (
+            <form onSubmit={onSubmit}>
+              <input onChange={(event) => setTitle(event.target.value)} placeholder="Başlık" value={title} />
+              <textarea onChange={(event) => setDescription(event.target.value)} placeholder="Kısa açıklama" value={description} />
+              <button className="primary-button" disabled={loading} type="submit">
+                {loading ? "Kaydediliyor..." : activeModule.action}
+              </button>
+            </form>
+          )}
+          {message ? <p className={message.includes("oluşturuldu") || message.includes("eklendi") ? "checkout-success" : "form-error"}>{message}</p> : null}
         </article>
 
         <article className="workspace-records">
@@ -187,6 +288,32 @@ export function PanelWorkspace({ panel }: { panel: PanelWorkspaceKey }) {
           )}
         </article>
       </div>
+
+      {panel === "citizen" && activeModuleId === "packages" ? (
+        <div className="citizen-package-grid">
+          {citizenPackages.map((item) => (
+            <article className={`citizen-package-card ${item.color}`} key={item.name}>
+              <div>
+                <span>{item.badge}</span>
+                <h3>{item.name}</h3>
+                <strong>{item.price}</strong>
+              </div>
+              <p>{item.text}</p>
+              <ul>
+                {item.features.map((feature) => <li key={feature}>{feature}</li>)}
+              </ul>
+              <button
+                className="primary-button"
+                disabled={loading}
+                onClick={() => selectCitizenPackage(item.name, item.price, item.features)}
+                type="button"
+              >
+                {item.price === "0 TL" ? "Ücretsiz Kullan" : "Paketi Seç"}
+              </button>
+            </article>
+          ))}
+        </div>
+      ) : null}
     </section>
   );
 }

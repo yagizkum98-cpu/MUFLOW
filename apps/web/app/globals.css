@@ -191,6 +191,8 @@ a {
 :root[data-theme="dark"] .workspace-action-card,
 :root[data-theme="dark"] .workspace-records,
 :root[data-theme="dark"] .workspace-record,
+:root[data-theme="dark"] .citizen-package-card,
+:root[data-theme="dark"] .citizen-package-note,
 :root[data-theme="dark"] .permission-table article {
   background: var(--card);
   border-color: var(--line);
@@ -276,6 +278,9 @@ a {
 :root[data-theme="dark"] .workspace-records p,
 :root[data-theme="dark"] .workspace-record span,
 :root[data-theme="dark"] .workspace-record small,
+:root[data-theme="dark"] .citizen-package-card p,
+:root[data-theme="dark"] .citizen-package-card li,
+:root[data-theme="dark"] .citizen-package-note span,
 :root[data-theme="dark"] .permission-table span,
 :root[data-theme="dark"] .permission-table small {
   color: var(--muted);
@@ -2500,6 +2505,110 @@ p {
   padding: 14px;
 }
 
+.citizen-package-note {
+  background: #ecfdf5;
+  border: 1px solid #bbf7d0;
+  border-radius: 16px;
+  display: grid;
+  gap: 8px;
+  padding: 16px;
+}
+
+.citizen-package-note strong {
+  color: #047857;
+}
+
+.citizen-package-note span {
+  color: var(--muted);
+  font-weight: 800;
+  line-height: 1.45;
+}
+
+.citizen-package-grid {
+  display: grid;
+  gap: 16px;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+
+.citizen-package-card {
+  background: var(--white);
+  border: 1px solid var(--line);
+  border-radius: 20px;
+  box-shadow: 0 18px 38px rgba(15, 23, 42, 0.06);
+  display: grid;
+  gap: 14px;
+  padding: 20px;
+}
+
+.citizen-package-card.green {
+  border-color: #bbf7d0;
+}
+
+.citizen-package-card.blue {
+  border-color: #bfdbfe;
+}
+
+.citizen-package-card.purple {
+  border-color: #ddd6fe;
+}
+
+.citizen-package-card.yellow {
+  border-color: #fde68a;
+}
+
+.citizen-package-card div:first-child {
+  display: grid;
+  gap: 8px;
+}
+
+.citizen-package-card span {
+  border-radius: 999px;
+  color: var(--white);
+  font-size: 0.78rem;
+  font-weight: 950;
+  justify-self: start;
+  padding: 8px 10px;
+}
+
+.citizen-package-card.green span {
+  background: #059669;
+}
+
+.citizen-package-card.blue span {
+  background: var(--blue);
+}
+
+.citizen-package-card.purple span {
+  background: #7c3aed;
+}
+
+.citizen-package-card.yellow span {
+  background: #ca8a04;
+}
+
+.citizen-package-card h3 {
+  margin: 0;
+}
+
+.citizen-package-card strong {
+  color: var(--navy);
+  font-size: 1.35rem;
+}
+
+.citizen-package-card p,
+.citizen-package-card li {
+  color: var(--muted);
+  font-weight: 750;
+  line-height: 1.45;
+}
+
+.citizen-package-card ul {
+  display: grid;
+  gap: 8px;
+  margin: 0;
+  padding-left: 18px;
+}
+
 .business-hero {
   margin: 0 auto 34px;
   max-width: 860px;
@@ -2734,7 +2843,8 @@ p {
   .security-grid,
   .quick-question-grid,
   .workspace-tabs,
-  .workspace-body {
+  .workspace-body,
+  .citizen-package-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
@@ -2827,6 +2937,7 @@ p {
   .quick-question-grid,
   .workspace-tabs,
   .workspace-body,
+  .citizen-package-grid,
   .feature-matrix,
   .excluded-grid,
   .business-grid,

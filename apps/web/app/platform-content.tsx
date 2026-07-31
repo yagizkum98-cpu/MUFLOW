@@ -299,7 +299,7 @@ const analyticsMetrics = [
     value: "21.760",
     change: "+9.8%",
     text: "İşletme profili ve QR sayfası görünürlüğü canlı özet olarak sunulur.",
-    bars: [50, 48, 66, 78, 82],
+    bars: [50, 48, 66, 78, 80],
   },
 ];
 

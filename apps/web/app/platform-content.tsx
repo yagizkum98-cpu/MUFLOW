@@ -1,5 +1,14 @@
 import { MuAiDemo } from "./mu-ai-demo";
 import { LiveStats } from "./live-stats";
+import {
+  businessRevenue,
+  citizenRevenue,
+  extraRevenueChannels,
+  municipalityRevenue,
+  productFamily,
+  revenueDistribution,
+  salesSteps,
+} from "../lib/revenue-model";
 
 const reasons = [
   ["Cloud", "Bulut Tabanlı", "Kurulum gerektirmez."],
@@ -14,28 +23,6 @@ const platforms = [
   ["🏢", "İşletme", "İşletme profili, kampanya ve yerel ekonomi araçları."],
   ["🌍", "Turizm", "Rota, harita, etkinlik ve destinasyon deneyimi."],
   ["⚙️", "Yönetici", "Rol bazlı yönetim, raporlama ve sistem ayarları."],
-];
-
-const packages = [
-  {
-    name: "Ücretsiz",
-    note: "İlk belediyeler için giriş maliyetini düşürür.",
-    features: ["Haber", "Duyuru", "Etkinlik"],
-    cta: "Ücretsiz Başla",
-  },
-  {
-    name: "Pro",
-    note: "Operasyon, katılım ve entegrasyon ihtiyacı büyüyen kurumlar için.",
-    features: ["CRM", "AI", "Analitik", "API", "Katılımcı bütçe", "İşletme portalı"],
-    cta: "Demo Talep Et",
-    featured: true,
-  },
-  {
-    name: "Enterprise",
-    note: "Kurumsal ölçek, özel entegrasyon ve yüksek erişilebilirlik gerektiren yapılar için.",
-    features: ["White Label", "SSO", "e-Devlet entegrasyonu", "Özel geliştirme", "SLA paketleri"],
-    cta: "İletişime Geç",
-  },
 ];
 
 const mvpFeatures = [
@@ -355,6 +342,109 @@ function DashboardMockup() {
   );
 }
 
+function RevenueModelSection() {
+  return (
+    <section className="section pricing-section" id="paketler">
+      <div className="section-heading">
+        <p className="eyebrow">Gelir Modeli</p>
+        <h2>Kurumsal lisans, işletme aboneliği ve modüler büyüme.</h2>
+        <p>
+          MUFLOW gelir altyapısı belediyeyi ana müşteri, işletmeleri abonelik kanalı ve vatandaş hizmetlerini ücretsiz
+          temel katman olarak konumlandırır.
+        </p>
+      </div>
+
+      <div className="revenue-layout">
+        <article className="revenue-card wide">
+          <p className="plan-label">{municipalityRevenue.title}</p>
+          <p>{municipalityRevenue.text}</p>
+          <ul>
+            {municipalityRevenue.streams.map((stream) => <li key={stream}>{stream}</li>)}
+          </ul>
+        </article>
+
+        <div className="package-table">
+          {municipalityRevenue.packages.map((plan) => (
+            <article className={`revenue-card ${plan.featured ? "featured" : ""}`} key={plan.name}>
+              <span className="package-name">{plan.name}</span>
+              <h3>{plan.target}</h3>
+              <p>{plan.content}</p>
+            </article>
+          ))}
+        </div>
+
+        <article className="revenue-card wide">
+          <p className="plan-label">{businessRevenue.title}</p>
+          <p>{businessRevenue.text}</p>
+          <div className="b2b-grid">
+            {businessRevenue.packages.map((plan) => (
+              <div className={plan.featured ? "featured" : ""} key={plan.name}>
+                <h3>{plan.name}</h3>
+                <ul>
+                  {plan.features.map((feature) => <li key={feature}>{feature}</li>)}
+                </ul>
+              </div>
+            ))}
+          </div>
+          <p className="revenue-note">{businessRevenue.note}</p>
+        </article>
+
+        <article className="revenue-card">
+          <p className="plan-label">{citizenRevenue.title}</p>
+          <p>{citizenRevenue.text}</p>
+          <ul>
+            {citizenRevenue.services.map((service) => <li key={service}>{service}</li>)}
+          </ul>
+        </article>
+
+        <article className="revenue-card">
+          <p className="plan-label">Ek Gelir Kanalları</p>
+          <div className="channel-list">
+            {extraRevenueChannels.map(([title, text]) => (
+              <div key={title}>
+                <strong>{title}</strong>
+                <span>{text}</span>
+              </div>
+            ))}
+          </div>
+        </article>
+
+        <article className="revenue-card wide">
+          <p className="plan-label">Önerilen Gelir Dağılımı</p>
+          <div className="distribution-list">
+            {revenueDistribution.map(([label, value]) => (
+              <div key={label}>
+                <span>{label}</span>
+                <strong>%{value}</strong>
+                <i style={{ width: `${value}%` }} />
+              </div>
+            ))}
+          </div>
+        </article>
+
+        <article className="revenue-card">
+          <p className="plan-label">Satış Stratejisi</p>
+          <ol className="sales-steps">
+            {salesSteps.map((step) => <li key={step}>{step}</li>)}
+          </ol>
+        </article>
+
+        <article className="revenue-card">
+          <p className="plan-label">Ürün Ailesi</p>
+          <div className="product-family">
+            {productFamily.map(([name, text]) => (
+              <div key={name}>
+                <strong>{name}</strong>
+                <span>{text}</span>
+              </div>
+            ))}
+          </div>
+        </article>
+      </div>
+    </section>
+  );
+}
+
 export function PlatformContent() {
   return (
     <main>
@@ -593,28 +683,7 @@ export function PlatformContent() {
         </div>
       </section>
 
-      <section className="section pricing-section" id="paketler">
-        <div className="section-heading">
-          <p className="eyebrow">Gelir Modeli</p>
-          <h2>Freemium model ile düşük giriş maliyeti, kademeli büyüme.</h2>
-        </div>
-        <div className="pricing-grid">
-          {packages.map((plan) => (
-            <article className={`pricing-card ${plan.featured ? "featured" : ""}`} key={plan.name}>
-              <div>
-                <p className="plan-label">{plan.name}</p>
-                <p>{plan.note}</p>
-              </div>
-              <ul>
-                {plan.features.map((feature) => <li key={feature}>{feature}</li>)}
-              </ul>
-              <a className={plan.featured ? "primary-button" : "secondary-button"} href="mailto:demo@muflow.city">
-                {plan.cta}
-              </a>
-            </article>
-          ))}
-        </div>
-      </section>
+      <RevenueModelSection />
 
       <section className="platform-block">
         <div className="section-heading">
@@ -640,7 +709,7 @@ export function PlatformContent() {
 
       <section className="cta">
         <h2>Şehrinizi Dijitalleştirin.</h2>
-        <p>Freemium model ile başlayın, ihtiyaç oldukça büyütün.</p>
+        <p>İhtiyacınız olan modülle başlayın, platform değer gösterdikçe büyütün.</p>
         <a className="primary-button" href="mailto:demo@muflow.city">Demo Talep Et</a>
       </section>
     </main>

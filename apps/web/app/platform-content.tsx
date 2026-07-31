@@ -312,6 +312,25 @@ const analyticsMetrics = [
   },
 ];
 
+const securityFeatures = [
+  {
+    title: "Güvenli giriş",
+    text: "Kullanıcı oturumları HTTP-only çerezde saklanan JWT ile korunur.",
+  },
+  {
+    title: "JWT/OAuth tabanlı kimlik doğrulama",
+    text: "MVP JWT altyapısıyla çalışır; OAuth sağlayıcıları aynı auth katmanına bağlanabilir.",
+  },
+  {
+    title: "Rol bazlı yetkilendirme",
+    text: "Süper Admin, Belediye Yöneticisi, Personel, İşletme Yetkilisi ve Vatandaş rolleri ayrıştırılır.",
+  },
+  {
+    title: "HTTPS desteği",
+    text: "Production ortamında HTTP istekleri middleware seviyesinde HTTPS'e yönlendirilir.",
+  },
+];
+
 const stats = [["5+", "Portal"], ["100+", "Modül"], ["API", "Ready"], ["Cloud", "Native"]];
 
 function DashboardMockup() {
@@ -511,6 +530,26 @@ export function PlatformContent() {
                   <i style={{ height: `${height}%` }} key={`${metric.title}-${index}`} />
                 ))}
               </div>
+            </article>
+          ))}
+        </div>
+      </section>
+
+      <section className="security-section">
+        <div className="security-copy">
+          <p className="eyebrow">🔐 Güvenlik</p>
+          <h2>Güvenli giriş ve rol bazlı erişim altyapısı.</h2>
+          <p>
+            MUFLOW MVP; kurum, işletme ve vatandaş kullanıcılarını ayrı rollerle yönetir. Oturumlar JWT ile doğrulanır,
+            korumalı sayfalar middleware üzerinden kontrol edilir ve production ortamında HTTPS kullanımı desteklenir.
+          </p>
+          <a className="primary-button" href="/giris">Giriş Altyapısını Gör</a>
+        </div>
+        <div className="security-grid">
+          {securityFeatures.map((feature) => (
+            <article className="security-card" key={feature.title}>
+              <h3>{feature.title}</h3>
+              <p>{feature.text}</p>
             </article>
           ))}
         </div>

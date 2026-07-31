@@ -4,12 +4,7 @@ import { LiveDashboardMockup } from "./live-dashboard-mockup";
 import { LiveAnalytics } from "./live-analytics";
 import {
   businessRevenue,
-  citizenRevenue,
-  extraRevenueChannels,
   municipalityRevenue,
-  productFamily,
-  revenueDistribution,
-  salesSteps,
 } from "../lib/revenue-model";
 import { PricingCheckout } from "./pricing-checkout";
 
@@ -282,57 +277,6 @@ function RevenueModelSection() {
           businessPackages={businessRevenue.packages}
         />
 
-        <article className="revenue-card">
-          <p className="plan-label">{citizenRevenue.title}</p>
-          <p>{citizenRevenue.text}</p>
-          <ul>
-            {citizenRevenue.services.map((service) => <li key={service}>{service}</li>)}
-          </ul>
-        </article>
-
-        <article className="revenue-card">
-          <p className="plan-label">Ek Gelir Kanalları</p>
-          <div className="channel-list">
-            {extraRevenueChannels.map(([title, text]) => (
-              <div key={title}>
-                <strong>{title}</strong>
-                <span>{text}</span>
-              </div>
-            ))}
-          </div>
-        </article>
-
-        <article className="revenue-card wide">
-          <p className="plan-label">Önerilen Gelir Dağılımı</p>
-          <div className="distribution-list">
-            {revenueDistribution.map(([label, value]) => (
-              <div key={label}>
-                <span>{label}</span>
-                <strong>%{value}</strong>
-                <i style={{ width: `${value}%` }} />
-              </div>
-            ))}
-          </div>
-        </article>
-
-        <article className="revenue-card">
-          <p className="plan-label">Satış Stratejisi</p>
-          <ol className="sales-steps">
-            {salesSteps.map((step) => <li key={step}>{step}</li>)}
-          </ol>
-        </article>
-
-        <article className="revenue-card">
-          <p className="plan-label">Ürün Ailesi</p>
-          <div className="product-family">
-            {productFamily.map(([name, text]) => (
-              <div key={name}>
-                <strong>{name}</strong>
-                <span>{text}</span>
-              </div>
-            ))}
-          </div>
-        </article>
       </div>
     </section>
   );

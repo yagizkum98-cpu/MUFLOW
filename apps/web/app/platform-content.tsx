@@ -1,5 +1,6 @@
 import { MuAiDemo } from "./mu-ai-demo";
 import { LiveStats } from "./live-stats";
+import { LiveDashboardMockup } from "./live-dashboard-mockup";
 import {
   businessRevenue,
   citizenRevenue,
@@ -327,9 +328,9 @@ function DashboardMockup() {
       <div className="dashboard">
         <div className="dash-top"><span /><span /><span /></div>
         <div className="dash-grid">
-          <div className="metric tall"><strong>82%</strong><small>Talep çözüm oranı</small></div>
-          <div className="metric"><strong>248</strong><small>Aktif işlem</small></div>
-          <div className="metric"><strong>12</strong><small>Entegrasyon</small></div>
+          <div className="metric tall"><strong>0%</strong><small>Talep çözüm oranı</small></div>
+          <div className="metric"><strong>0</strong><small>Aktif işlem</small></div>
+          <div className="metric"><strong>0</strong><small>Entegrasyon</small></div>
           <div className="chart"><i /><i /><i /><i /><i /></div>
         </div>
       </div>
@@ -461,7 +462,7 @@ export function PlatformContent() {
             <a className="secondary-button" href="mailto:demo@muflow.city">Demo Talep Et</a>
           </div>
         </div>
-        <DashboardMockup />
+        <LiveDashboardMockup />
       </section>
 
       <section className="section">

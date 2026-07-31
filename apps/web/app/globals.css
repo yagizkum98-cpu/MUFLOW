@@ -1465,6 +1465,10 @@ p {
   padding: 82px clamp(20px, 5vw, 72px);
 }
 
+.notification-section.locked-section {
+  display: block;
+}
+
 .notification-copy {
   position: sticky;
   top: 110px;

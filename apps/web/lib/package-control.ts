@@ -40,6 +40,7 @@ export const packageCatalog: PackageDefinition[] = [
     features: [
       { id: "news", label: "Haber Yönetimi", apiKey: "municipality.news", panels: ["municipality"] },
       { id: "announcements", label: "Duyuru Yönetimi", apiKey: "municipality.announcements", panels: ["municipality", "notifications"] },
+      { id: "notification-center", label: "Bildirim Merkezi", apiKey: "notifications.center", panels: ["notifications"] },
       { id: "events", label: "Etkinlik Yönetimi", apiKey: "municipality.events", panels: ["municipality", "citizen"] },
       { id: "citizen-portal", label: "Vatandaş Portalı", apiKey: "citizen.portal", panels: ["citizen"] },
     ],

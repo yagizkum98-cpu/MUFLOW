@@ -1,12 +1,16 @@
 services:
-  mongo:
-    image: mongo:7
-    container_name: muflow-mongo
+  postgres:
+    image: postgres:16
+    container_name: muflow-postgres
     restart: unless-stopped
+    environment:
+      POSTGRES_DB: muflow
+      POSTGRES_USER: muflow
+      POSTGRES_PASSWORD: muflow
     ports:
-      - "27017:27017"
+      - "5432:5432"
     volumes:
-      - mongo-data:/data/db
+      - postgres-data:/var/lib/postgresql/data
 
 volumes:
-  mongo-data:
+  postgres-data:

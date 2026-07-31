@@ -3,6 +3,85 @@ generator client {
 }
 
 datasource db {
-  provider = "mongodb"
-  url      = env("DATABASE_URL")
+  provider  = "postgresql"
+  url       = env("DATABASE_URL")
+  directUrl = env("DIRECT_URL")
+}
+
+model User {
+  id               String            @id @default(cuid())
+  name             String
+  email            String            @unique
+  passwordHash     String?
+  role             UserRole
+  status           AccountStatus     @default(ACTIVE)
+  createdAt        DateTime          @default(now())
+  updatedAt        DateTime          @updatedAt
+  workspaceRecords WorkspaceRecord[]
+}
+
+model Municipality {
+  id        String   @id @default(cuid())
+  name      String
+  slug      String   @unique
+  status    String   @default("active")
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Business {
+  id        String   @id @default(cuid())
+  name      String
+  category  String?
+  status    String   @default("draft")
+  partner   Boolean  @default(false)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model CitizenPass {
+  id        String   @id @default(cuid())
+  userId    String
+  plan      String   @default("MUFLOW Free")
+  qrCode    String?
+  active    Boolean  @default(true)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model PackageAccess {
+  id         String   @id @default(cuid())
+  packageId  String   @unique
+  purchased  Boolean  @default(false)
+  approved   Boolean  @default(false)
+  opened     Boolean  @default(false)
+  featureApi Json     @default("{}")
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+}
+
+model WorkspaceRecord {
+  id          String   @id @default(cuid())
+  panel       String
+  moduleId    String
+  title       String
+  description String
+  status      String   @default("İncelemede")
+  createdById String?
+  createdBy   User?    @relation(fields: [createdById], references: [id])
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+enum UserRole {
+  SUPER_ADMIN
+  MUNICIPALITY_ADMIN
+  MUNICIPALITY_STAFF
+  BUSINESS_OWNER
+  CITIZEN
+}
+
+enum AccountStatus {
+  ACTIVE
+  PASSIVE
 }

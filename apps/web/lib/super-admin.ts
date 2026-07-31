@@ -45,7 +45,7 @@ export const superAdminModules = [
   {
     icon: "🔗",
     title: "API Yönetimi",
-    text: "REST API katalog, health, panel, paket, AI ve canlı veri endpointleri tek yerden izlenir.",
-    items: ["/api/rest", "/api/rest/health", "/api/rest/v1/municipalities", "/api/ai/chat"],
+    text: "REST API katalog, Supabase PostgreSQL, panel, paket, AI ve canlı veri endpointleri tek yerden izlenir.",
+    items: ["/api/rest", "/api/rest/health", "/api/database/health", "/api/rest/v1/municipalities"],
   },
 ];

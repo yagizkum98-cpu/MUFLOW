@@ -14,17 +14,29 @@ npm run prisma:generate
 npm run dev
 ```
 
-MongoDB is expected at:
+## Supabase PostgreSQL
+
+MUFLOW now uses Supabase PostgreSQL through Prisma. Copy `.env.example` to `.env` and fill the Supabase values:
 
 ```txt
-mongodb://localhost:27017/muflow?directConnection=true
+DATABASE_URL="Supabase pooled PostgreSQL connection string"
+DIRECT_URL="Supabase direct PostgreSQL connection string"
+NEXT_PUBLIC_SUPABASE_URL="https://PROJECT_REF.supabase.co"
+NEXT_PUBLIC_SUPABASE_ANON_KEY="..."
+SUPABASE_SERVICE_ROLE_KEY="..."
 ```
 
-For this machine, MongoDB can be started with the installed `mongod.exe` and the project-local data folder:
+Then generate Prisma Client and push the schema:
 
-```powershell
-New-Item -ItemType Directory -Force -Path .local\mongo-data,.local\mongo-log
-Start-Process -WindowStyle Hidden -FilePath 'C:\Program Files\MongoDB\Server\8.2\bin\mongod.exe' -ArgumentList '--dbpath','.local\mongo-data','--logpath','.local\mongo-log\mongod.log','--logappend','--bind_ip','127.0.0.1','--port','27017'
+```bash
+npm run prisma:generate
+npx prisma db push
 ```
 
-If Docker is available, `docker-compose.yml` also defines a MongoDB service.
+Database health endpoint:
+
+```txt
+/api/database/health
+```
+
+If Docker is available for local fallback, `docker-compose.yml` defines a PostgreSQL service compatible with Prisma.

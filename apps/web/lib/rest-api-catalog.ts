@@ -31,6 +31,7 @@ export const restApiCatalog = [
       ["GET", "/api/live/stats", "Canlı platform özet metriklerini döndürür."],
       ["GET", "/api/live/hero", "Hero dashboard canlı verisini döndürür."],
       ["GET", "/api/live/analytics", "Sıfırlanmış canlı analitik metriklerini döndürür."],
+      ["GET", "/api/database/health", "Supabase PostgreSQL yapılandırma durumunu döndürür."],
     ],
   },
   {

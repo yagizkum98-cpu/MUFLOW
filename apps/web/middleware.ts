@@ -6,6 +6,10 @@ const protectedRoutes: Array<{ path: string; roles: UserRole[] }> = [
   { path: "/dashboard/belediye", roles: ["SUPER_ADMIN", "MUNICIPALITY_ADMIN", "MUNICIPALITY_STAFF"] },
   { path: "/dashboard/isletme", roles: ["SUPER_ADMIN", "BUSINESS_OWNER"] },
   { path: "/dashboard/vatandas", roles: ["SUPER_ADMIN", "CITIZEN"] },
+  { path: "/dashboard/rehber", roles: ["SUPER_ADMIN", "MUNICIPALITY_ADMIN", "MUNICIPALITY_STAFF"] },
+  { path: "/dashboard/bildirimler", roles: ["SUPER_ADMIN", "MUNICIPALITY_ADMIN", "MUNICIPALITY_STAFF"] },
+  { path: "/dashboard/analitik", roles: ["SUPER_ADMIN", "MUNICIPALITY_ADMIN", "MUNICIPALITY_STAFF", "BUSINESS_OWNER"] },
+  { path: "/dashboard/ai", roles: ["SUPER_ADMIN", "MUNICIPALITY_ADMIN", "MUNICIPALITY_STAFF", "BUSINESS_OWNER", "CITIZEN"] },
   { path: "/dashboard", roles: ["SUPER_ADMIN", "MUNICIPALITY_ADMIN", "MUNICIPALITY_STAFF", "BUSINESS_OWNER", "CITIZEN"] },
 ];
 

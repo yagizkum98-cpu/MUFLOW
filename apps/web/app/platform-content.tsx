@@ -18,11 +18,11 @@ const reasons = [
 ];
 
 const platforms = [
-  ["🏛", "Belediye", "Duyuru, talep, etkinlik ve operasyon yönetimi tek panelde."],
-  ["👥", "Vatandaş", "Başvuru, öneri, bildirim ve şehir rehberine hızlı erişim."],
-  ["🏢", "İşletme", "İşletme profili, kampanya ve yerel ekonomi araçları."],
-  ["🌍", "Turizm", "Rota, harita, etkinlik ve destinasyon deneyimi."],
-  ["⚙️", "Yönetici", "Rol bazlı yönetim, raporlama ve sistem ayarları."],
+  ["🏛", "Belediye", "Duyuru, talep, etkinlik ve operasyon yönetimi tek panelde.", "/dashboard/belediye"],
+  ["👥", "Vatandaş", "Başvuru, öneri, bildirim ve şehir rehberine hızlı erişim.", "/dashboard/vatandas"],
+  ["🏢", "İşletme", "İşletme profili, kampanya ve yerel ekonomi araçları.", "/dashboard/isletme"],
+  ["🌍", "Turizm", "Rota, harita, etkinlik ve destinasyon deneyimi.", "/dashboard/rehber"],
+  ["⚙️", "Yönetici", "Rol bazlı yönetim, raporlama ve sistem ayarları.", "/dashboard/admin"],
 ];
 
 const mvpFeatures = [
@@ -486,12 +486,13 @@ export function PlatformContent() {
           <h2>Tüm temel modüller tek Platform sekmesinde.</h2>
         </div>
         <div className="platform-grid">
-          {platforms.map(([icon, title, text]) => (
-            <article className="platform-card" key={title}>
+          {platforms.map(([icon, title, text, href]) => (
+            <a className="platform-card" href={href} key={title}>
               <span>{icon}</span>
               <h3>{title}</h3>
               <p>{text}</p>
-            </article>
+              <strong>Panele Git</strong>
+            </a>
           ))}
         </div>
       </section>

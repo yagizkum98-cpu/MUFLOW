@@ -9,11 +9,15 @@ const roleLabels = {
   CITIZEN: "Vatandaş",
 };
 
-const accessItems = [
-  ["Güvenli giriş", "HTTP-only çerez ile saklanan JWT oturumu."],
-  ["JWT/OAuth hazır", "MVP JWT ile çalışır; OAuth sağlayıcıları aynı oturum katmanına bağlanabilir."],
-  ["Rol bazlı yetkilendirme", "Süper Admin, Belediye, Personel, İşletme ve Vatandaş rolleri ayrıştırıldı."],
-  ["HTTPS desteği", "Production ortamında HTTP istekleri middleware ile HTTPS'e yönlendirilir."],
+const portalLinks = [
+  ["🏛️ Belediye Paneli", "Haber, duyuru, etkinlik, sayfa, bildirim ve temel raporlar.", "/dashboard/belediye"],
+  ["🏢 İşletme Paneli", "Profil, kampanya, etkinlik, QR sayfası, bildirim ve istatistikler.", "/dashboard/isletme"],
+  ["👥 Vatandaş Paneli", "Profil, talep, duyuru, etkinlik, şehir rehberi ve bildirimler.", "/dashboard/vatandas"],
+  ["🗺️ Şehir Rehberi", "Gezilecek yerler, parklar, plajlar, müzeler, sağlık noktaları ve otopark.", "/dashboard/rehber"],
+  ["🔔 Bildirim Merkezi", "Belediye duyuruları, etkinlik, acil durum ve sistem bildirimleri.", "/dashboard/bildirimler"],
+  ["📈 Analitik", "Kullanıcı, sayfa, etkinlik ve işletme görünürlüğü metrikleri.", "/dashboard/analitik"],
+  ["🤖 MU AI", "Soru-cevap, etkinlik önerisi, şehir rehberi desteği ve SSS.", "/dashboard/ai"],
+  ["⚙️ Yönetici", "Kullanıcı, rol, sistem ayarı ve API yönetimi.", "/dashboard/admin"],
 ];
 
 export default async function DashboardPage() {
@@ -27,11 +31,11 @@ export default async function DashboardPage() {
     <main className="secure-dashboard">
       <section className="secure-hero">
         <div>
-          <p className="eyebrow">🔐 Güvenlik</p>
-          <h1>Güvenli operasyon paneli hazır.</h1>
+          <p className="eyebrow">🔐 Operasyon Merkezi</p>
+          <h1>Modüller gerçek panel rotalarına bağlı.</h1>
           <p>
-            {user.name} hesabı {roleLabels[user.role]} rolü ile oturum açtı. Bu alan JWT doğrulaması ve rol bazlı
-            yetkilendirme ile korunur.
+            {user.name} hesabı {roleLabels[user.role]} rolü ile oturum açtı. Bu alan JWT doğrulaması, rol bazlı
+            yetkilendirme ve korumalı dashboard altyapısı ile çalışır.
           </p>
         </div>
         <form action="/api/auth/logout" method="post">
@@ -40,11 +44,11 @@ export default async function DashboardPage() {
       </section>
 
       <section className="security-grid">
-        {accessItems.map(([title, text]) => (
-          <article className="security-card" key={title}>
+        {portalLinks.map(([title, text, href]) => (
+          <a className="security-card" href={href} key={title}>
             <h2>{title}</h2>
             <p>{text}</p>
-          </article>
+          </a>
         ))}
       </section>
     </main>

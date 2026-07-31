@@ -571,17 +571,16 @@ p {
   margin-bottom: 18px;
 }
 
-.platform-card a {
+.platform-card strong {
   color: var(--blue);
   display: inline-flex;
   font-weight: 900;
   margin-top: 18px;
-  opacity: 0;
-  transform: translateY(8px);
+  opacity: 0.85;
   transition: opacity 220ms ease, transform 220ms ease;
 }
 
-.platform-card:hover a {
+.platform-card:hover strong {
   opacity: 1;
   transform: translateY(0);
 }

@@ -181,6 +181,8 @@ a {
 :root[data-theme="dark"] .business-panel-card,
 :root[data-theme="dark"] .business-live-row article,
 :root[data-theme="dark"] .admin-access-card,
+:root[data-theme="dark"] .admin-user-form,
+:root[data-theme="dark"] .admin-user-list article,
 :root[data-theme="dark"] .permission-table article {
   background: var(--card);
   border-color: var(--line);
@@ -257,6 +259,7 @@ a {
 :root[data-theme="dark"] .business-live-row span,
 :root[data-theme="dark"] .business-live-row small,
 :root[data-theme="dark"] .admin-access-card p,
+:root[data-theme="dark"] .admin-user-list span,
 :root[data-theme="dark"] .permission-table span,
 :root[data-theme="dark"] .permission-table small {
   color: var(--muted);
@@ -264,6 +267,8 @@ a {
 
 :root[data-theme="dark"] .secondary-button,
 :root[data-theme="dark"] .login-button,
+:root[data-theme="dark"] .admin-user-form input,
+:root[data-theme="dark"] .admin-user-form select,
 :root[data-theme="dark"] .login-card input,
 :root[data-theme="dark"] .mu-ai-panel input {
   background: var(--card-soft);
@@ -2041,6 +2046,96 @@ p {
   font-weight: 900;
 }
 
+.admin-user-management {
+  display: grid;
+  gap: 22px;
+  margin: 0 auto 34px;
+  max-width: 1180px;
+}
+
+.admin-user-grid {
+  display: grid;
+  gap: 18px;
+  grid-template-columns: minmax(320px, 0.8fr) minmax(0, 1.2fr);
+}
+
+.admin-user-form,
+.admin-user-list article {
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: 20px;
+  box-shadow: 0 18px 38px rgba(15, 23, 42, 0.06);
+}
+
+.admin-user-form {
+  display: grid;
+  gap: 14px;
+  padding: 22px;
+}
+
+.admin-user-form label {
+  color: var(--navy);
+  display: grid;
+  font-size: 0.9rem;
+  font-weight: 900;
+  gap: 8px;
+}
+
+.admin-user-form input,
+.admin-user-form select {
+  background: var(--white);
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  color: var(--navy);
+  font: inherit;
+  min-height: 44px;
+  padding: 0 12px;
+}
+
+.admin-user-list {
+  display: grid;
+  gap: 12px;
+}
+
+.admin-user-list article {
+  align-items: center;
+  display: grid;
+  gap: 12px;
+  grid-template-columns: minmax(0, 1fr) auto auto;
+  padding: 16px;
+}
+
+.admin-user-list strong {
+  color: var(--navy);
+  display: block;
+}
+
+.admin-user-list span {
+  color: var(--muted);
+  display: block;
+  font-size: 0.9rem;
+  font-weight: 750;
+  margin-top: 4px;
+}
+
+.admin-user-list small,
+.admin-user-list a {
+  border-radius: 999px;
+  font-weight: 950;
+  padding: 8px 10px;
+}
+
+.admin-user-list small {
+  background: #eff6ff;
+  color: var(--blue);
+}
+
+.admin-user-list a {
+  background: var(--navy);
+  color: var(--white);
+  text-align: center;
+}
+
 .business-hero {
   margin: 0 auto 34px;
   max-width: 860px;
@@ -2286,6 +2381,7 @@ p {
   .feature-matrix,
   .business-grid,
   .business-panel-grid,
+  .admin-user-grid,
   .admin-access-grid,
   .permission-table,
   .goal-grid,
@@ -2366,6 +2462,7 @@ p {
   .business-grid,
   .business-panel-grid,
   .business-live-row,
+  .admin-user-grid,
   .admin-access-grid,
   .permission-table,
   .goal-grid,

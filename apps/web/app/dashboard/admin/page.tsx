@@ -1,6 +1,7 @@
 import { redirect } from "next/navigation";
 import { getCurrentUser } from "../../../lib/current-user";
 import { permissionMatrix, superAdminModules, superAdminPortals, superAdminStats } from "../../../lib/super-admin";
+import { UserManagementPanel } from "./user-management-panel";
 
 export default async function AdminDashboardPage() {
   const user = await getCurrentUser();
@@ -64,6 +65,8 @@ export default async function AdminDashboardPage() {
           ))}
         </div>
       </section>
+
+      <UserManagementPanel />
 
       <section className="business-panel-grid">
         {superAdminModules.map((module) => (

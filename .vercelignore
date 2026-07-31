@@ -1,8 +1,5 @@
 node_modules
 .next
 apps/*/.next
-.env
 .local
-
-.vercel
-.env*
+.env

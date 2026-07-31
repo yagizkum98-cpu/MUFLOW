@@ -667,20 +667,6 @@ export function PlatformContent() {
             ve şehir ekosisteminde görünür olmasını sağlayan basit ve kullanışlı bir yönetim panelidir.
           </p>
         </div>
-        <div className="business-grid">
-          {businessPortal.map((feature) => (
-            <article className="business-card" key={feature.title}>
-              <div className="feature-title">
-                <span>{feature.icon}</span>
-                <h3>{feature.title}</h3>
-              </div>
-              <p>{feature.text}</p>
-              <ul>
-                {feature.items.map((item) => <li key={item}>{item}</li>)}
-              </ul>
-            </article>
-          ))}
-        </div>
       </section>
 
       <RevenueModelSection />

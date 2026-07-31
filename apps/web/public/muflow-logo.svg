@@ -1,18 +1,11 @@
-<svg width="512" height="256" viewBox="0 0 512 256" fill="none" xmlns="http://www.w3.org/2000/svg">
-  <rect width="512" height="256" rx="36" fill="white"/>
-  <path d="M118 128V62c0-17 20-26 33-15l81 71c10 9 25 9 35 0l81-71c13-11 33-2 33 15v66" stroke="#061A3D" stroke-width="24" stroke-linecap="round" stroke-linejoin="round"/>
-  <path d="M315 122c14 40 52 68 96 68 56 0 101-45 101-101V54" stroke="url(#paint0_linear)" stroke-width="24" stroke-linecap="round"/>
-  <path d="M86 224h22v-44l34 37h3l34-37v44h22v-76h-20l-37 41-38-41H86v76Z" fill="#061A3D"/>
-  <path d="M228 148h22v43c0 12 8 19 22 19 14 0 22-7 22-19v-43h22v45c0 21-17 34-44 34s-44-13-44-34v-45Z" fill="#061A3D"/>
-  <path d="M347 224v-76h70v18h-48v13h43v17h-43v28h-22Z" fill="#156BEF"/>
-  <path d="M441 224v-76h22v58h49v18h-71Z" fill="url(#paint1_linear)"/>
+<svg width="220" height="80" viewBox="0 0 220 80" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="MUFL">
+  <text x="8" y="56" fill="url(#muflGradient)" font-family="Inter, Arial, sans-serif" font-size="54" font-weight="800" letter-spacing="7">
+    MUFL
+  </text>
   <defs>
-    <linearGradient id="paint0_linear" x1="315" y1="185" x2="509" y2="49" gradientUnits="userSpaceOnUse">
-      <stop stop-color="#2563EB"/>
-      <stop offset="1" stop-color="#06B6D4"/>
-    </linearGradient>
-    <linearGradient id="paint1_linear" x1="441" y1="186" x2="512" y2="186" gradientUnits="userSpaceOnUse">
-      <stop stop-color="#2563EB"/>
+    <linearGradient id="muflGradient" x1="8" y1="40" x2="205" y2="40" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#061A3D"/>
+      <stop offset="0.55" stop-color="#2563EB"/>
       <stop offset="1" stop-color="#06B6D4"/>
     </linearGradient>
   </defs>

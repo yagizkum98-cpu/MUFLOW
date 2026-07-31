@@ -72,6 +72,34 @@ a {
   font-weight: 700;
 }
 
+.language-toggle {
+  align-items: center;
+  background: var(--soft);
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  display: inline-flex;
+  gap: 4px;
+  padding: 4px;
+}
+
+.language-toggle button {
+  background: transparent;
+  border: 0;
+  border-radius: 999px;
+  color: var(--muted);
+  cursor: pointer;
+  font: inherit;
+  font-size: 0.82rem;
+  font-weight: 900;
+  min-height: 34px;
+  padding: 0 12px;
+}
+
+.language-toggle button.active {
+  background: var(--blue);
+  color: var(--white);
+}
+
 .header-actions {
   gap: 10px;
 }

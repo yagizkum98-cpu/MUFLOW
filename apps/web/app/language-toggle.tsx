@@ -8,6 +8,7 @@ const translations: Record<string, string> = {
   "Giriş Yap": "Login",
   "GiriÅŸ Yap": "Login",
   "Demo Talep Et": "Request Demo",
+  "Konuşalım": "Let's Talk",
   "Gündüz": "Day",
   "Gece": "Night",
   "Paketleri İncele": "View Packages",

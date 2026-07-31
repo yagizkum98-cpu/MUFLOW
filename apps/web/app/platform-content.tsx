@@ -522,6 +522,9 @@ export function PlatformContent() {
             MUFLOW Şehir Rehberi; gezilecek yerler, parklar, plajlar, müzeler, sağlık noktaları ve otopark bilgilerini
             harita destekli sade bir deneyimle sunar.
           </p>
+          <a className="primary-button" href="mailto:demo@muflow.city?subject=MUFLOW%20%C5%9Eehir%20Rehberi">
+            Konuşalım
+          </a>
         </div>
         <div className="business-grid">
           {cityGuide.map((feature) => (

@@ -45,7 +45,7 @@ function detectIntent(question: string): MuAiIntent {
     return "city_guide";
   }
 
-  if (/(nasıl|nereden|şifre|hesap|başvuru|sık sorulan|yardım|işletme profili)/u.test(text)) {
+  if (/(nasıl|nasil|nereden|şifre|sifre|hesap|başvuru|basvuru|sık sorulan|sik sorulan|yardım|yardim|işletme profili|isletme profili)/u.test(text)) {
     return "faq";
   }
 

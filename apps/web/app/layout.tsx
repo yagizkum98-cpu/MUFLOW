@@ -18,7 +18,6 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           </a>
           <nav className="main-nav" aria-label="Ana menü">
             <a href="/platform">Platform</a>
-            <a href="/giris?mode=register">Üye Ol</a>
             <a href="/giris">Giriş Yap</a>
           </nav>
           <LanguageToggle />

@@ -74,15 +74,6 @@ export function LoginForm({ initialMode, nextPath }: { initialMode: AuthMode; ne
         <p>Vatandaşlar kendi e-posta ve şifreleriyle üye olur, ardından vatandaş paneline erişir.</p>
       </div>
 
-      <div className="auth-mode-tabs" role="tablist" aria-label="Giriş modu">
-        <button className={mode === "login" ? "active" : ""} type="button" onClick={() => setMode("login")}>
-          Giriş Yap
-        </button>
-        <button className={mode === "register" ? "active" : ""} type="button" onClick={() => setMode("register")}>
-          Üye Ol
-        </button>
-      </div>
-
       {mode === "register" ? (
         <label>
           Ad Soyad
@@ -133,6 +124,20 @@ export function LoginForm({ initialMode, nextPath }: { initialMode: AuthMode; ne
       <button className="primary-button" disabled={loading} type="submit">
         {loading ? "İşlem yapılıyor..." : mode === "register" ? "Üye Ol" : "Giriş Yap"}
       </button>
+
+      <p className="auth-switch-link">
+        {mode === "login" ? "Üye olmadın mı?" : "Zaten hesabın var mı?"}
+        <button
+          type="button"
+          onClick={() => {
+            setError("");
+            setMessage("");
+            setMode(mode === "login" ? "register" : "login");
+          }}
+        >
+          {mode === "login" ? "Üye ol" : "Giriş yap"}
+        </button>
+      </p>
 
       <p className="auth-note">
         Kurumsal roller Süper Admin tarafından tanımlanır. Vatandaş demo hesabı kaldırıldı; vatandaşlar kendi hesaplarıyla giriş yapar.

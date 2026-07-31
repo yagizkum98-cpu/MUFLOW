@@ -78,6 +78,51 @@ const mvpFeatures = [
   },
 ];
 
+const businessPortal = [
+  {
+    icon: "📋",
+    title: "İşletme Profili",
+    text: "İşletme bilgilerini kolayca yönetin.",
+    items: ["İşletme adı", "Logo", "Açıklama", "Kategori", "Adres", "Telefon", "E-posta", "Web sitesi", "Sosyal medya bağlantıları", "Çalışma saatleri"],
+  },
+  {
+    icon: "📢",
+    title: "Duyuru ve Kampanyalar",
+    text: "Müşterilerinize güncel bilgileri paylaşın.",
+    items: ["Kampanya oluşturma", "Duyuru yayınlama", "Son kullanma tarihi belirleme", "Yayında / Taslak durumu"],
+  },
+  {
+    icon: "🎉",
+    title: "Etkinlik Yönetimi",
+    text: "İşletmenizde düzenlediğiniz etkinlikleri duyurun.",
+    items: ["Etkinlik oluşturma", "Tarih ve saat", "Konum", "Kısa açıklama", "Kapak görseli"],
+  },
+  {
+    icon: "📱",
+    title: "QR İşletme Sayfası",
+    text: "Her işletme için otomatik dijital tanıtım sayfası oluşturun.",
+    items: ["QR kod", "İşletme bilgileri", "Konum", "Kampanyalar", "Etkinlikler", "İletişim bilgileri"],
+  },
+  {
+    icon: "🔔",
+    title: "Bildirim Merkezi",
+    text: "Belediye ve sistem duyurularını tek yerden takip edin.",
+    items: ["Belediye duyuruları", "Sistem bildirimleri", "Başvuru durumları"],
+  },
+  {
+    icon: "📊",
+    title: "Temel İstatistikler",
+    text: "İşletmenizin görünürlüğünü takip edin.",
+    items: ["Profil görüntülenme sayısı", "QR görüntülenme sayısı", "Aktif kampanya sayısı", "Yaklaşan etkinlik sayısı"],
+  },
+  {
+    icon: "👤",
+    title: "Hesap Yönetimi",
+    text: "İşletme hesabınızı yönetin.",
+    items: ["Profil düzenleme", "Şifre değiştirme", "Bildirim tercihleri"],
+  },
+];
+
 const stats = [["5+", "Portal"], ["100+", "Modül"], ["API", "Ready"], ["Cloud", "Native"]];
 
 function DashboardMockup() {
@@ -147,6 +192,31 @@ export function PlatformContent() {
               <span>{icon}</span>
               <h3>{title}</h3>
               <p>{text}</p>
+            </article>
+          ))}
+        </div>
+      </section>
+
+      <section className="business-section">
+        <div className="business-hero">
+          <p className="eyebrow">🏢 İşletme Portalı</p>
+          <h2>İşletmenizi dijital olarak yönetin.</h2>
+          <p>
+            MUFLOW İşletme Portalı; yerel işletmelerin belediye ile iletişim kurmasını, temel bilgilerini yönetmesini
+            ve şehir ekosisteminde görünür olmasını sağlayan basit ve kullanışlı bir yönetim panelidir.
+          </p>
+        </div>
+        <div className="business-grid">
+          {businessPortal.map((feature) => (
+            <article className="business-card" key={feature.title}>
+              <div className="feature-title">
+                <span>{feature.icon}</span>
+                <h3>{feature.title}</h3>
+              </div>
+              <p>{feature.text}</p>
+              <ul>
+                {feature.items.map((item) => <li key={item}>{item}</li>)}
+              </ul>
             </article>
           ))}
         </div>

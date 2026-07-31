@@ -31,8 +31,8 @@ const packagePrices: Record<string, string> = {
   "municipality-professional": "Teklif ile",
   "municipality-enterprise": "Özel teklif",
   "business-ücretsiz": "0 TL",
-  "business-premium": "Aylık teklif",
-  "business-premium+": "Aylık teklif",
+  "business-premium": "Yıllık teklif",
+  "business-premium+": "Yıllık teklif",
 };
 
 function normalizeId(value: string) {

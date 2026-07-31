@@ -15,9 +15,9 @@ export default async function AiDashboardPage() {
     <>
       <PanelSection
         eyebrow="🤖 MU AI"
-        title="Şehir asistanı altyapısını yönetin."
-        text="Belediye hizmetleri soru-cevap, etkinlik önerileri, şehir rehberi desteği ve sık sorulan sorular canlı AI endpointine bağlıdır."
-        stats={[["AI endpoint", "Aktif"], ["Intent", "4"], ["Bilgi kaynağı", "MVP"], ["Mod", "Beta"]]}
+        title="OpenAI API destekli şehir asistanı altyapısını yönetin."
+        text="İlk faz kapsamı belediye hizmetleri, SSS, şehir rehberi ve etkinlik önerileridir. OPENAI_API_KEY varsa OpenAI API çalışır, yoksa MVP kural tabanlı güvenli yanıt verir."
+        stats={[["OpenAI API", "Hazır"], ["Intent", "4"], ["Bilgi kaynağı", "MVP"], ["Mod", "Beta"]]}
         modules={aiModules}
         panelKey="ai"
       />

@@ -8,6 +8,7 @@ type AiResponse = {
   suggestions: string[];
   source: string;
   mode: string;
+  model?: string;
 };
 
 const quickQuestions = [
@@ -99,8 +100,12 @@ export function MuAiDemo() {
           <div className="ai-result-card">
             <div className="analytics-head">
               <span>{response.source}</span>
-              <strong>{response.mode === "openai-ready" ? "OpenAI Ready" : "Beta"}</strong>
+              <strong>{response.mode === "openai" ? "OpenAI API" : "Beta"}</strong>
             </div>
+            <small className="live-status">
+              İlk faz: Belediye hizmetleri, SSS, Şehir rehberi, Etkinlik önerileri
+              {response.model ? ` / ${response.model}` : ""}
+            </small>
             <h3>{response.title}</h3>
             <p>{response.answer}</p>
             <ul>

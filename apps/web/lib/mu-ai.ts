@@ -6,7 +6,35 @@ export type MuAiAnswer = {
   answer: string;
   suggestions: string[];
   source: string;
+  model?: string;
 };
+
+export const muAiFirstPhase = [
+  {
+    intent: "municipality_services",
+    title: "Belediye hizmetleri",
+    source: "Belediye Portalı",
+    scope: "Talep, şikayet, duyuru, başvuru ve belediye hizmet yönlendirmeleri.",
+  },
+  {
+    intent: "faq",
+    title: "SSS",
+    source: "Sık Sorulan Sorular",
+    scope: "Hesap, başvuru, işletme profili ve sık tekrar eden kullanım soruları.",
+  },
+  {
+    intent: "city_guide",
+    title: "Şehir rehberi",
+    source: "Şehir Rehberi",
+    scope: "Gezilecek yerler, parklar, plajlar, müzeler, sağlık noktaları, otopark ve rota desteği.",
+  },
+  {
+    intent: "event_recommendations",
+    title: "Etkinlik önerileri",
+    source: "Etkinlik Takvimi",
+    scope: "Bugün, bu hafta ve kategori bazlı etkinlik önerileri.",
+  },
+] as const;
 
 const eventSuggestions = [
   "Bugün saat 18.00'de Kent Meydanında Çocuk Bilim Atölyesi var.",
@@ -100,4 +128,76 @@ export function answerMuAiQuestion(question: string): MuAiAnswer {
     ],
     source: "Belediye Portalı",
   };
+}
+
+export async function answerMuAiWithOpenAi(question: string): Promise<MuAiAnswer & { mode: string }> {
+  const fallback = answerMuAiQuestion(question);
+  const apiKey = process.env.OPENAI_API_KEY;
+  const model = process.env.OPENAI_MODEL || "gpt-4.1-mini";
+
+  if (!apiKey) {
+    return { ...fallback, mode: "rule-based-beta" };
+  }
+
+  try {
+    const response = await fetch("https://api.openai.com/v1/responses", {
+      method: "POST",
+      headers: {
+        Authorization: `Bearer ${apiKey}`,
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        model,
+        input: [
+          {
+            role: "system",
+            content:
+              "Sen MUFLOW belediye şehir asistanısın. İlk faz kapsamı yalnızca belediye hizmetleri, SSS, şehir rehberi ve etkinlik önerileridir. Kamu hizmetlerini ücretli gösterme. Kısa, net ve Türkçe yanıt ver. Bilgi yoksa ilgili panele yönlendir.",
+          },
+          {
+            role: "user",
+            content: `Soru: ${question}\nAlgılanan intent: ${fallback.intent}\nMVP kaynak: ${fallback.source}`,
+          },
+        ],
+        text: {
+          format: {
+            type: "json_schema",
+            name: "muflow_ai_answer",
+            schema: {
+              type: "object",
+              additionalProperties: false,
+              properties: {
+                answer: { type: "string" },
+                suggestions: {
+                  type: "array",
+                  items: { type: "string" },
+                  minItems: 2,
+                  maxItems: 4,
+                },
+              },
+              required: ["answer", "suggestions"],
+            },
+          },
+        },
+      }),
+    });
+
+    if (!response.ok) {
+      return { ...fallback, mode: "openai-fallback", model };
+    }
+
+    const data = await response.json();
+    const outputText = data.output_text || data.output?.[0]?.content?.[0]?.text;
+    const parsed = outputText ? JSON.parse(outputText) : null;
+
+    return {
+      ...fallback,
+      answer: String(parsed?.answer || fallback.answer),
+      suggestions: Array.isArray(parsed?.suggestions) ? parsed.suggestions.slice(0, 4) : fallback.suggestions,
+      mode: "openai",
+      model,
+    };
+  } catch {
+    return { ...fallback, mode: "openai-fallback", model };
+  }
 }

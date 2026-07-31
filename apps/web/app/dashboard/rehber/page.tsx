@@ -17,6 +17,7 @@ export default async function CityGuideDashboardPage() {
       text="Gezilecek yerler, parklar, plajlar, müzeler, sağlık noktaları ve otopark bilgileri tek rehber panelinde düzenlenir."
       stats={[["Rehber noktası", "0"], ["Kategori", "7"], ["Harita pini", "0"], ["Aktif rota", "0"]]}
       modules={cityGuideModules}
+      panelKey="guide"
     />
   );
 }

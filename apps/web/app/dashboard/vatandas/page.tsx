@@ -17,6 +17,7 @@ export default async function CitizenDashboardPage() {
       text="Profil, talep, duyuru, etkinlik, şehir rehberi ve bildirim işlemleri vatandaş panelinde tek noktadan yönetilir."
       stats={[["Açık talep", "0"], ["Duyuru", "0"], ["Yaklaşan etkinlik", "0"], ["Bildirim", "0"]]}
       modules={citizenPortalModules}
+      panelKey="citizen"
     />
   );
 }

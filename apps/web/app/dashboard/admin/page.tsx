@@ -1,6 +1,7 @@
 import { redirect } from "next/navigation";
 import { getCurrentUser } from "../../../lib/current-user";
 import { permissionMatrix, superAdminModules, superAdminPortals, superAdminStats } from "../../../lib/super-admin";
+import { PackageAccessPanel } from "./package-access-panel";
 import { UserManagementPanel } from "./user-management-panel";
 
 export default async function AdminDashboardPage() {
@@ -65,6 +66,8 @@ export default async function AdminDashboardPage() {
           ))}
         </div>
       </section>
+
+      <PackageAccessPanel />
 
       <UserManagementPanel />
 

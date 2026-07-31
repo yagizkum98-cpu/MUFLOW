@@ -183,6 +183,9 @@ a {
 :root[data-theme="dark"] .admin-access-card,
 :root[data-theme="dark"] .admin-user-form,
 :root[data-theme="dark"] .admin-user-list article,
+:root[data-theme="dark"] .admin-package-card,
+:root[data-theme="dark"] .panel-access-status,
+:root[data-theme="dark"] .access-package,
 :root[data-theme="dark"] .permission-table article {
   background: var(--card);
   border-color: var(--line);
@@ -260,6 +263,9 @@ a {
 :root[data-theme="dark"] .business-live-row small,
 :root[data-theme="dark"] .admin-access-card p,
 :root[data-theme="dark"] .admin-user-list span,
+:root[data-theme="dark"] .admin-package-card p,
+:root[data-theme="dark"] .feature-api-list small,
+:root[data-theme="dark"] .access-package small,
 :root[data-theme="dark"] .permission-table span,
 :root[data-theme="dark"] .permission-table small {
   color: var(--muted);
@@ -2136,6 +2142,173 @@ p {
   text-align: center;
 }
 
+.admin-package-management,
+.panel-access-status {
+  display: grid;
+  gap: 22px;
+  margin: 0 auto 34px;
+  max-width: 1180px;
+}
+
+.admin-package-grid,
+.panel-access-grid {
+  display: grid;
+  gap: 18px;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.admin-package-card,
+.access-package {
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: 20px;
+  box-shadow: 0 18px 38px rgba(15, 23, 42, 0.06);
+  display: grid;
+  gap: 16px;
+  padding: 20px;
+}
+
+.admin-package-card.active,
+.access-package.active {
+  border-color: rgba(37, 99, 235, 0.42);
+  box-shadow: 0 22px 48px rgba(37, 99, 235, 0.12);
+}
+
+.package-admin-head,
+.panel-access-head {
+  align-items: flex-start;
+  display: flex;
+  gap: 14px;
+  justify-content: space-between;
+}
+
+.package-admin-head span,
+.package-admin-head strong,
+.panel-access-counts span {
+  border-radius: 999px;
+  font-size: 0.78rem;
+  font-weight: 950;
+  padding: 8px 10px;
+}
+
+.package-admin-head span {
+  background: #eff6ff;
+  color: var(--blue);
+}
+
+.package-admin-head strong,
+.panel-access-counts span {
+  background: var(--navy);
+  color: var(--white);
+  white-space: nowrap;
+}
+
+.package-admin-head h3 {
+  margin: 10px 0 6px;
+}
+
+.package-admin-head p {
+  color: var(--muted);
+  font-weight: 750;
+  line-height: 1.4;
+  margin: 0;
+}
+
+.package-checks,
+.feature-api-list {
+  display: grid;
+  gap: 10px;
+}
+
+.package-checks {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.package-checks label,
+.feature-api-list label {
+  align-items: center;
+  background: var(--soft);
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  color: var(--navy);
+  display: flex;
+  font-weight: 900;
+  gap: 10px;
+  padding: 12px;
+}
+
+.feature-api-list label {
+  align-items: flex-start;
+}
+
+.package-checks input,
+.feature-api-list input {
+  flex: 0 0 18px;
+  height: 18px;
+  margin-top: 1px;
+  width: 18px;
+}
+
+.feature-api-list strong,
+.feature-api-list small {
+  display: block;
+}
+
+.feature-api-list small {
+  color: var(--muted);
+  font-size: 0.78rem;
+  margin-top: 4px;
+}
+
+.panel-access-status {
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: 22px;
+  box-shadow: 0 18px 38px rgba(15, 23, 42, 0.06);
+  padding: 24px;
+}
+
+.panel-access-counts {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.access-package ul {
+  display: grid;
+  gap: 8px;
+  margin: 0;
+  padding: 0;
+}
+
+.access-package li {
+  align-items: center;
+  background: var(--soft);
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  display: flex;
+  gap: 10px;
+  justify-content: space-between;
+  list-style: none;
+  padding: 10px 12px;
+}
+
+.access-package li.active {
+  background: #ecfdf5;
+  border-color: #bbf7d0;
+}
+
+.access-package li span {
+  color: var(--navy);
+  font-weight: 900;
+}
+
+.access-package li small {
+  color: var(--muted);
+  font-weight: 850;
+  white-space: nowrap;
+}
+
 .business-hero {
   margin: 0 auto 34px;
   max-width: 860px;
@@ -2382,6 +2555,8 @@ p {
   .business-grid,
   .business-panel-grid,
   .admin-user-grid,
+  .admin-package-grid,
+  .panel-access-grid,
   .admin-access-grid,
   .permission-table,
   .goal-grid,
@@ -2463,6 +2638,8 @@ p {
   .business-panel-grid,
   .business-live-row,
   .admin-user-grid,
+  .admin-package-grid,
+  .panel-access-grid,
   .admin-access-grid,
   .permission-table,
   .goal-grid,
@@ -2479,6 +2656,17 @@ p {
   }
 
   .module-detail-head {
+    flex-direction: column;
+  }
+
+  .package-checks {
+    grid-template-columns: 1fr;
+  }
+
+  .package-admin-head,
+  .panel-access-head,
+  .access-package li {
+    align-items: flex-start;
     flex-direction: column;
   }
 

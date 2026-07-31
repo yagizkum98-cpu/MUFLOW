@@ -1,6 +1,7 @@
 import { redirect } from "next/navigation";
 import { getCurrentUser } from "../../../lib/current-user";
 import { municipalityPortalModules } from "../../../lib/municipality-portal";
+import { PanelAccessStatus } from "../panel-access-status";
 
 const liveStats = [
   ["Yayındaki haber", "0"],
@@ -41,6 +42,8 @@ export default async function MunicipalityDashboardPage() {
           </article>
         ))}
       </section>
+
+      <PanelAccessStatus panel="municipality" />
 
       <section className="business-panel-grid">
         {municipalityPortalModules.map((module) => (

@@ -17,6 +17,7 @@ export default async function NotificationsDashboardPage() {
       text="Belediye duyuruları, etkinlik bildirimleri, acil durum bilgilendirmeleri ve sistem bildirimleri tek merkezden yönetilir."
       stats={[["Canlı bildirim", "0"], ["Planlı gönderim", "0"], ["Acil uyarı", "0"], ["Sistem mesajı", "0"]]}
       modules={notificationModules}
+      panelKey="notifications"
     />
   );
 }

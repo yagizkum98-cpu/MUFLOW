@@ -19,6 +19,7 @@ export default async function AiDashboardPage() {
         text="Belediye hizmetleri soru-cevap, etkinlik önerileri, şehir rehberi desteği ve sık sorulan sorular canlı AI endpointine bağlıdır."
         stats={[["AI endpoint", "Aktif"], ["Intent", "4"], ["Bilgi kaynağı", "MVP"], ["Mod", "Beta"]]}
         modules={aiModules}
+        panelKey="ai"
       />
       <section className="mu-ai-section">
         <MuAiDemo />

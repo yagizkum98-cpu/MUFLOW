@@ -1,6 +1,7 @@
 import { redirect } from "next/navigation";
 import { businessPortalModules } from "../../../lib/business-portal";
 import { getCurrentUser } from "../../../lib/current-user";
+import { PanelAccessStatus } from "../panel-access-status";
 
 const liveStats = [
   ["Profil görüntülenme", "0"],
@@ -41,6 +42,8 @@ export default async function BusinessDashboardPage() {
           </article>
         ))}
       </section>
+
+      <PanelAccessStatus panel="business" />
 
       <section className="business-panel-grid">
         {businessPortalModules.map((module) => (

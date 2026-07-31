@@ -1,3 +1,5 @@
+import { PanelAccessStatus } from "./panel-access-status";
+
 type PanelModule = {
   icon: string;
   title: string;
@@ -11,9 +13,10 @@ type PanelSectionProps = {
   text: string;
   stats: string[][];
   modules: PanelModule[];
+  panelKey?: string;
 };
 
-export function PanelSection({ eyebrow, title, text, stats, modules }: PanelSectionProps) {
+export function PanelSection({ eyebrow, title, text, stats, modules, panelKey }: PanelSectionProps) {
   return (
     <main className="business-dashboard-page">
       <section className="business-dashboard-hero">
@@ -36,6 +39,8 @@ export function PanelSection({ eyebrow, title, text, stats, modules }: PanelSect
           </article>
         ))}
       </section>
+
+      {panelKey ? <PanelAccessStatus panel={panelKey} /> : null}
 
       <section className="business-panel-grid">
         {modules.map((module) => (

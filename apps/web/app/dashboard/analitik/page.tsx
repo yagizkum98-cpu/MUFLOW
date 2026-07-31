@@ -17,6 +17,7 @@ export default async function AnalyticsDashboardPage() {
       text="Kullanıcı sayıları, sayfa görüntülemeleri, etkinlik katılımı ve işletme görünürlüğü temel raporlama panelinde izlenir."
       stats={[["Kullanıcı", "0"], ["Sayfa görüntüleme", "0"], ["Etkinlik katılımı", "0"], ["İşletme görüntülenme", "0"]]}
       modules={analyticsModules}
+      panelKey="analytics"
     />
   );
 }
